@@ -17,7 +17,7 @@ class LoginFragment : Fragment() {
     var enteredNumber: String = ""
     var enteredPassword: String = ""
     private val testCustomer = Customer(
-        customer_id = "1",
+        customerId = "1",
         customer_name = "Ayaz",
         customer_tc = "12345678901",
         customer_password = "1234",
