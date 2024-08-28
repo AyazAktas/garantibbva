@@ -10,6 +10,7 @@ android {
 
     buildFeatures{
         viewBinding=true
+        dataBinding=true
     }
 
     defaultConfig {
@@ -48,6 +49,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
     implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

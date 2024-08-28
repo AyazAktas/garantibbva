@@ -1,17 +1,50 @@
 package com.example.garantibbva.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.garantibbva.R
+import com.example.garantibbva.data.entity.Costumer
 import com.example.garantibbva.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding=FragmentLoginBinding.inflate(inflater,container,false)
+    var enteredNumber: String = ""
+    var enteredPassword: String = ""
+    private val testCostumer = Costumer(
+        costumer_id = "1",
+        costumer_name = "Ayaz",
+        costumer_tc = "12345678901",
+        costumer_password = "1234",
+        costumers_balance = 1000,
+        costumer_no = "10001",
+        account_type = "Savings",
+        account_info = "Regular savings account"
+    )
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding.costumerLoginFragment = this
         return binding.root
+    }
+
+    fun onLoginClicked() {
+        if ((enteredNumber == testCostumer.costumer_tc || enteredNumber == testCostumer.costumer_no)
+            && enteredPassword == testCostumer.costumer_password) {
+            Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(context, "Hatalı Numara veya Parola", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun onForgetPasswordClicked() {
+        Toast.makeText(context, "Parola sıfırlama işlemi başlatıldı", Toast.LENGTH_SHORT).show()
     }
 }

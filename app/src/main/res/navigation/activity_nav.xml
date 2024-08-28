@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_anasayfaFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_anasayfaFragment_to_corpLoginFragment"
+            app:destination="@id/corpLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.garantibbva.ui.fragment.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/corpLoginFragment"
+        android:name="com.example.garantibbva.ui.fragment.CorpLoginFragment"
+        android:label="fragment_corp_login"
+        tools:layout="@layout/fragment_corp_login" />
 </navigation>
