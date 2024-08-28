@@ -21,10 +21,22 @@
         android:id="@+id/loginFragment"
         android:name="com.example.garantibbva.ui.fragment.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_customerPageFragment"
+            app:destination="@id/customerPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/corpLoginFragment"
         android:name="com.example.garantibbva.ui.fragment.CorpLoginFragment"
         android:label="fragment_corp_login"
         tools:layout="@layout/fragment_corp_login" />
+    <fragment
+        android:id="@+id/customerPageFragment"
+        android:name="com.example.garantibbva.ui.fragment.CustomerPageFragment"
+        android:label="CustomerPageFragment" >
+        <argument
+            android:name="customer"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
+    </fragment>
 </navigation>

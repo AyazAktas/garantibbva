@@ -9,7 +9,7 @@
             type="com.example.garantibbva.ui.fragment.LoginFragment" />
         <variable
             name="kisiNesnesi"
-            type="com.example.garantibbva.data.entity.Costumer" />
+            type="com.example.garantibbva.data.entity.Customer" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
