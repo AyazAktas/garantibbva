@@ -18,13 +18,13 @@ class LoginFragment : Fragment() {
     var enteredPassword: String = ""
     private val testCustomer = Customer(
         customerId = "1",
-        customer_name = "Ayaz",
-        customer_tc = "12345678901",
-        customer_password = "1234",
-        customers_balance = 1000,
-        customer_no = "10001",
-        account_type = "Savings",
-        account_info = "Regular savings account"
+        customerName = "Ayaz",
+        customerTc = "12345678901",
+        customerPassword = "1234",
+        customersBalance = 1000,
+        customerNo = "10001",
+        accountType = "Savings",
+        accountInfo = "Regular savings account"
     )
 
     override fun onCreateView(
@@ -37,8 +37,8 @@ class LoginFragment : Fragment() {
     }
 
     fun onLoginClicked() {
-        if ((enteredNumber == testCustomer.customer_tc || enteredNumber == testCustomer.customer_no)
-            && enteredPassword == testCustomer.customer_password) {
+        if ((enteredNumber == testCustomer.customerTc || enteredNumber == testCustomer.customerNo)
+            && enteredPassword == testCustomer.customerPassword) {
             Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()
             val action=LoginFragmentDirections.actionLoginFragmentToCustomerPageFragment(testCustomer)
             findNavController().navigate(action)
