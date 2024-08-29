@@ -33,15 +33,11 @@ class LoginFragment : Fragment() {
 
     fun onLoginClicked() {
         viewLifecycleOwner.lifecycleScope.launch {
-            val isSuccess = customerDataSource.login(enteredNumber, enteredPassword)
-            if (isSuccess) {
-                val customerList = customerDataSource.customerInit()
-                val customer = customerList.firstOrNull()
-                if (customer != null) {
+            val customer = customerDataSource.login(enteredNumber, enteredPassword)
+            if (customer != null) {
                     Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()
                     val action = LoginFragmentDirections.actionLoginFragmentToCustomerPageFragment(customer)
                     findNavController().navigate(action)
-                }
             } else {
                 Snackbar.make(binding.root, "Hatalı Numara veya Parola", Snackbar.LENGTH_SHORT).show()
             }
