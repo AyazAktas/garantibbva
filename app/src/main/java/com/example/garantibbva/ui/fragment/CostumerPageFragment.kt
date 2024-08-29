@@ -1,10 +1,12 @@
 package com.example.garantibbva.ui.fragment
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
@@ -19,9 +21,21 @@ class CustomerPageFragment : Fragment() {
 
         val bundle:CustomerPageFragmentArgs by navArgs()
         val transactionCustomer=bundle.customer
-        binding.costumer=transactionCustomer
+        binding.customer=transactionCustomer
 
 
         return binding.root
     }
+
+    fun setImageResource(imageView: ImageView, imageName: String?) {
+        imageName?.let {
+            val context = imageView.context
+            val resId = context.resources.getIdentifier(it, "drawable", context.packageName)
+            if (resId != 0) {
+                imageView.setImageResource(resId)
+            }
+        }
+    }
+
+
 }

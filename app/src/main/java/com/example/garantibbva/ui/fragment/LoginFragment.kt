@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.data.entity.Customer
 import com.example.garantibbva.databinding.FragmentLoginBinding
+import kotlin.random.Random
+
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -18,14 +20,18 @@ class LoginFragment : Fragment() {
     var enteredPassword: String = ""
     private val testCustomer = Customer(
         customerId = "1",
+        costumerProfilePicture = R.drawable.ayaz,
         customerName = "Ayaz",
         customerTc = "12345678901",
         customerPassword = "1234",
-        customersBalance = 1000,
+        customersBalance = 271.57,
         customerNo = "10001",
+        accountNo = generateRandomAccountNo() ,
+        accountLocation = "VIAPORT - KURTKOY",
         accountType = "Savings",
-        accountInfo = "Regular savings account"
+        accountPurpose = "Personal"
     )
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +40,12 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.costumerLoginFragment = this
         return binding.root
+    }
+
+    fun generateRandomAccountNo(): String {
+        val prefix = Random.nextInt(1000, 9999)
+        val suffix = Random.nextInt(1000000, 9999999)
+        return "$prefix-$suffix"
     }
 
     fun onLoginClicked() {
