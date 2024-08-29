@@ -22,8 +22,6 @@ class CustomerPageFragment : Fragment() {
         val bundle:CustomerPageFragmentArgs by navArgs()
         val transactionCustomer=bundle.customer
         binding.customer=transactionCustomer
-
-
         return binding.root
     }
 

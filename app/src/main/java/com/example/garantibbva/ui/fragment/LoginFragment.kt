@@ -7,31 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
-import com.example.garantibbva.data.entity.Customer
+import com.example.garantibbva.data.datasource.CustomerDataSource
 import com.example.garantibbva.databinding.FragmentLoginBinding
-import kotlin.random.Random
-
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
+    private val customerDataSource = CustomerDataSource()
+
     var enteredNumber: String = ""
     var enteredPassword: String = ""
-    private val testCustomer = Customer(
-        customerId = "1",
-        costumerProfilePicture = R.drawable.ayaz,
-        customerName = "Ayaz",
-        customerTc = "12345678901",
-        customerPassword = "1234",
-        customersBalance = 271.57,
-        customerNo = "10001",
-        accountNo = generateRandomAccountNo() ,
-        accountLocation = "VIAPORT - KURTKOY",
-        accountType = "Savings",
-        accountPurpose = "Personal"
-    )
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,24 +31,23 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    fun generateRandomAccountNo(): String {
-        val prefix = Random.nextInt(1000, 9999)
-        val suffix = Random.nextInt(1000000, 9999999)
-        return "$prefix-$suffix"
-    }
-
     fun onLoginClicked() {
-        if ((enteredNumber == testCustomer.customerTc || enteredNumber == testCustomer.customerNo)
-            && enteredPassword == testCustomer.customerPassword) {
-            Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()
-            val action=LoginFragmentDirections.actionLoginFragmentToCustomerPageFragment(testCustomer)
-            findNavController().navigate(action)
-        } else {
-            Toast.makeText(context, "Hatalı Numara veya Parola", Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val isSuccess = customerDataSource.login(enteredNumber, enteredPassword)
+            if (isSuccess) {
+                val customerList = customerDataSource.customerInit()
+                val customer = customerList.firstOrNull()
+                if (customer != null) {
+                    Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()
+                    val action = LoginFragmentDirections.actionLoginFragmentToCustomerPageFragment(customer)
+                    findNavController().navigate(action)
+                }
+            } else {
+                Snackbar.make(binding.root, "Hatalı Numara veya Parola", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 
-    fun onForgetPasswordClicked() {
-        Toast.makeText(context, "Parola sıfırlama işlemi başlatıldı", Toast.LENGTH_SHORT).show()
-    }
 }
+
+
