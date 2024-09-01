@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -57,6 +58,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.47")
     ksp("com.google.dagger:hilt-compiler:2.47")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
     ksp("androidx.hilt:hilt-compiler:1.0.0")
     implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)

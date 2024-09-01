@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "1084763057373",
+    "project_id": "egitim-5c241",
+    "storage_bucket": "egitim-5c241.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084763057373:android:0d349a118d320f6613bf34",
+        "android_client_info": {
+          "package_name": "com.example.contactsapplicationv1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWESQ8HjiYuCIFkoCSg2R5nFE6nJZ2pP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084763057373:android:1960610a757c396313bf34",
+        "android_client_info": {
+          "package_name": "com.example.filmlerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWESQ8HjiYuCIFkoCSg2R5nFE6nJZ2pP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084763057373:android:725420191856822713bf34",
+        "android_client_info": {
+          "package_name": "com.example.garantibbva"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWESQ8HjiYuCIFkoCSg2R5nFE6nJZ2pP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

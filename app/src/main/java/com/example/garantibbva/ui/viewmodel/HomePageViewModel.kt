@@ -2,6 +2,7 @@ package com.example.garantibbva.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.garantibbva.data.datasource.CustomerDataSource
 import com.example.garantibbva.data.entity.Customer
 import com.example.garantibbva.data.repository.CustomerRepository
 import com.example.garantibbva.ui.fragment.CustomerPageFragment
@@ -19,8 +20,6 @@ class HomePageViewModel @Inject constructor(var customerRepository: CustomerRepo
         customerInit()
     }
     fun customerInit(){
-        CoroutineScope(Dispatchers.Main).launch {
-            customerList.value=customerRepository.customerInit()
-        }
+        customerList.value=customerRepository.customerInit()
     }
 }
