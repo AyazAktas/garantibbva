@@ -43,12 +43,13 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewBeOurCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="Müşterimiz Olun"
+            android:onClick="@{()->anasayfaFragment.beOurCustomerText(textViewBeOurCustomer)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonCostumerLogin" />
 
@@ -60,7 +61,7 @@
             android:layout_marginTop="24dp"
             android:text="En Yakın ATM / Şube"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewBeOurCustomer" />
 
         <TextView
             android:id="@+id/textView4"

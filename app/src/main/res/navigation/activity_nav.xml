@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_anasayfaFragment_to_corpLoginFragment"
             app:destination="@id/corpLoginFragment" />
+        <action
+            android:id="@+id/action_anasayfaFragment_to_beOurCustomerFragment"
+            app:destination="@id/beOurCustomerFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -38,5 +41,26 @@
         <argument
             android:name="customer"
             app:argType="com.example.garantibbva.data.entity.Customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/beOurCustomerFragment"
+        android:name="com.example.garantibbva.ui.fragment.BeOurCustomerFragment"
+        android:label="fragment_be_our_customer"
+        tools:layout="@layout/fragment_be_our_customer" >
+        <action
+            android:id="@+id/action_beOurCustomerFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
+        <action
+            android:id="@+id/action_beOurCustomerFragment_to_beOurCustomerPersonalFragment"
+            app:destination="@id/beOurCustomerPersonalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beOurCustomerPersonalFragment"
+        android:name="com.example.garantibbva.ui.fragment.BeOurCustomerPersonalFragment"
+        android:label="fragment_be_our_customer_personal"
+        tools:layout="@layout/fragment_be_our_customer_personal" >
+        <action
+            android:id="@+id/action_beOurCustomerPersonalFragment_to_beOurCustomerFragment"
+            app:destination="@id/beOurCustomerFragment" />
     </fragment>
 </navigation>

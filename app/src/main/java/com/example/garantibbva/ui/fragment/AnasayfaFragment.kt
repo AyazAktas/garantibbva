@@ -30,6 +30,10 @@ class AnasayfaFragment : Fragment() {
         return binding.root
     }
 
+    fun beOurCustomerText(it:View){
+        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_beOurCustomerFragment)
+    }
+
     fun costumerLoginButton(it: View) {
         Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_loginFragment)
     }
