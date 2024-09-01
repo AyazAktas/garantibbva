@@ -9,4 +9,7 @@ class PersonalRegistrationStepTwoViewModel@Inject constructor(var customerReposi
     fun customerRegisterOtherInfos(customerId:String,customerName: String, customerTc: String, customerBirthDate: String, customerPhoneNumber: String, customerPassword: String, accountLocation: String){
         customerRepository.customerRegisterOtherInfos(customerId, customerName, customerTc, customerBirthDate, customerPhoneNumber, customerPassword, accountLocation)
     }
+    fun cancelRegistration(customerId:String){
+        customerRepository.cancelRegistration(customerId)
+    }
 }

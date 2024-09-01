@@ -9,4 +9,6 @@ class CustomerRepository(var customerDataSource:CustomerDataSource) {
     fun customerInit(): List<Customer> = customerDataSource.customerInit()
     suspend fun personalCustomerRegister(customerId:String, costumerProfilePicture: Int, customerName: String, customerTc: String, customerBirthDate:String, customerPhoneNumber:String, customerPassword: String, customersBalance: Double, accountLocation:String, accountType:String, accountPurpose: String)=customerDataSource.personalCustomerRegister(costumerProfilePicture, customerName, customerTc, customerBirthDate, customerPhoneNumber, customerPassword, customersBalance, accountLocation, accountType, accountPurpose)
     fun customerRegisterOtherInfos(customerId:String,customerName: String, customerTc: String, customerBirthDate: String, customerPhoneNumber: String, customerPassword: String, accountLocation: String)=customerDataSource.customerRegisterOtherInfos(customerId, customerName, customerTc, customerBirthDate, customerPhoneNumber, customerPassword, accountLocation)
+    fun cancelRegistration(customerId:String)=customerDataSource.cancelRegistration(customerId)
+
 }

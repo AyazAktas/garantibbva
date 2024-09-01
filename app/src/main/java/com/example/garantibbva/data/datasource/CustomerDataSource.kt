@@ -89,7 +89,6 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         val customerId = documentRef.id
         newCustomer.customerId = customerId
 
-        // Update the document with the generated customerId
         documentRef.set(newCustomer).await()
 
         return newCustomer
@@ -109,13 +108,10 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         customerToUpdate["customerPassword"] = customerPassword
         customerToUpdate["accountLocation"] = accountLocation
 
-        // Koleksiyon referansı
-        val collectionReference = FirebaseFirestore.getInstance().collection("Customers")
 
-        // Belge referansı
+        val collectionReference = FirebaseFirestore.getInstance().collection("Customers")
         val documentRef = collectionReference.document(customerId)
 
-        // Güncelleme işlemi
         documentRef.update(customerToUpdate)
             .addOnSuccessListener {
                 Log.d("CustomerUpdate", "Customer successfully updated!")
@@ -124,6 +120,11 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
                 Log.e("CustomerUpdate", "Error updating document", e)
             }
     }
+
+    fun cancelRegistration(customerId:String){
+        collectionReference.document(customerId).delete()
+    }
+
 
     fun customerInit(): List<Customer> {
         return listOf()

@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentBeOurPersonalCustomerStepTwoBinding
 import com.example.garantibbva.ui.viewmodel.PersonalCustomerRegisterViewModel
 import com.example.garantibbva.ui.viewmodel.PersonalRegistrationStepTwoViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,12 +28,18 @@ class BeOurPersonalCustomerStepTwoFragment : Fragment() {
         val newCustomerInfo=bundle.customer
         binding.customer=newCustomerInfo
         binding.editTextCustomerNo.setText(newCustomerInfo.customerNo)
+        binding.toolbarImage.setOnClickListener {
+            Snackbar.make(it," İşlemi iptal etmek istediğinizden emin misiniz?",Snackbar.LENGTH_SHORT)
+                .setAction("Evet"){
+                    registerViewModel.cancelRegistration(newCustomerInfo.customerId.toString())
+                    findNavController().navigate(R.id.action_beOurPersonalCustomerStepTwoFragment_to_beOurCustomerFragment)
+                }
+                .show()
+        }
+
         return binding.root
     }
 
-    fun returnBeOurCustomer(it:View){
-        Navigation.findNavController(it).navigate(R.id.action_beOurPersonalCustomerStepTwoFragment_to_beOurCustomerFragment)
-    }
 
     fun buttonSaveCustomer(customerId:String,customerName: String, customerTc: String, customerBirthDate: String, customerPhoneNumber: String, customerPassword: String, accountLocation: String){
         registerViewModel.customerRegisterOtherInfos(customerId, customerName, customerTc, customerBirthDate, customerPhoneNumber, customerPassword, accountLocation)
