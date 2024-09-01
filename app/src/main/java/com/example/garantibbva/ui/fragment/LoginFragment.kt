@@ -12,12 +12,16 @@ import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.data.datasource.CustomerDataSource
 import com.example.garantibbva.databinding.FragmentLoginBinding
+import com.example.garantibbva.ui.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val customerDataSource = CustomerDataSource()
+
 
     var enteredNumber: String = ""
     var enteredPassword: String = ""

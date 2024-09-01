@@ -12,7 +12,9 @@ import androidx.navigation.Navigation
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentAnasayfaBinding
 import com.example.garantibbva.ui.viewmodel.HomePageViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private val viewModel: HomePageViewModel by viewModels()

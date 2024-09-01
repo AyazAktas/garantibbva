@@ -11,7 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentCustomerPageBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CustomerPageFragment : Fragment() {
     private lateinit var binding: FragmentCustomerPageBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

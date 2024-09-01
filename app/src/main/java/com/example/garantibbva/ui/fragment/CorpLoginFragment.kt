@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentCorpLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class CorpLoginFragment : Fragment() {
     private lateinit var binding: FragmentCorpLoginBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
