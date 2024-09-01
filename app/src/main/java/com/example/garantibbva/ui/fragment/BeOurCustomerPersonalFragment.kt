@@ -66,23 +66,24 @@ class BeOurCustomerPersonalFragment : Fragment() {
         }
 
         lifecycleScope.launch {
+            val selectedAccountType=selectedAccountTypes.toString()
             try {
-                selectedAccountTypes.forEach { accountType ->
-                    registerViewModel.personalCustomerRegister(
-                        customerId = "",
-                        costumerProfilePicture = R.drawable.baseline_person_24,
-                        customerName = "",
-                        customerTc = "",
-                        customerBirthDate = "",
-                        customerPhoneNumber = "",
-                        customerPassword = "",
-                        customersBalance = 0.0,
-                        accountLocation = "",
-                        accountType = accountType,
-                        accountPurpose = ""
-                    )
-                }
+                val customer=registerViewModel.personalCustomerRegister(
+                    customerId = "",
+                    costumerProfilePicture = R.drawable.baseline_person_24,
+                    customerName = "",
+                    customerTc = "",
+                    customerBirthDate = "",
+                    customerPhoneNumber = "",
+                    customerPassword = "",
+                    customersBalance = 0.0,
+                    accountLocation = "",
+                    accountType = selectedAccountType,
+                    accountPurpose = ""
+                )
                 Snackbar.make(binding.root, "Kayıt başarılı", Snackbar.LENGTH_SHORT).show()
+                val action=BeOurCustomerPersonalFragmentDirections.actionBeOurCustomerPersonalFragmentToBeOurPersonalCustomerStepTwoFragment(customer=customer)
+                findNavController().navigate(action)
 
             } catch (e: Exception) {
                 Log.e("hata","Kayıt sırasında bir hata oluştu: ${e.message}")

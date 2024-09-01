@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="beOurCustomerStepTwoFragment"
+            type="com.example.garantibbva.ui.fragment.BeOurPersonalCustomerStepTwoFragment" />
+        <variable
+            name="customer"
+            type="com.example.garantibbva.data.entity.Customer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.BeOurPersonalCustomerStepTwoFragment">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#4CAF50"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <ImageView
+                android:id="@+id/toolbarImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:onClick="@{()->beOurCustomerStepTwoFragment.returnBeOurCustomer(toolbarImage)}"
+                android:src="@drawable/sharp_close_24"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Sizi Tanıyalım"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="179dp"
+                tools:layout_editor_absoluteY="18dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Doğrulama Bilgileri"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Ad Soyad"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCustomerNo" />
+
+        <EditText
+            android:id="@+id/editTextTC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Tc Kimlik Numarası"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+        <EditText
+            android:id="@+id/editTextNumberPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Şifrenizi Oluşturunuz"
+            android:inputType="numberPassword"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextAddress" />
+
+        <EditText
+            android:id="@+id/editTextPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Telefon Numarası"
+            android:inputType="phone"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBirthDate" />
+
+        <EditText
+            android:id="@+id/editTextBirthDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Doğum Tarihi"
+            android:inputType="date"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTC" />
+
+        <EditText
+            android:id="@+id/editTextTextAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Adres"
+            android:inputType="textPostalAddress"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" />
+
+        <Button
+            android:id="@+id/buttonSaveCustomer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Kaydı Tamamla"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{()->beOurCustomerStepTwoFragment.buttonSaveCustomer(customer.customerId,editTextName.getText().toString(),editTextTC.getText().toString(),editTextBirthDate.getText().toString(),editTextPhoneNumber.getText().toString(),editTextNumberPassword.getText().toString(),editTextTextAddress.getText().toString())}"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword" />
+
+        <EditText
+            android:id="@+id/editTextCustomerNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Customer No"
+            android:inputType="text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewCustomerNo"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="Deprecated" />
+
+        <TextView
+            android:id="@+id/textViewCustomerNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:text="Müşteri Numaranız:"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

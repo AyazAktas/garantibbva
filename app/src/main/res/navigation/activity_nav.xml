@@ -62,5 +62,19 @@
         <action
             android:id="@+id/action_beOurCustomerPersonalFragment_to_beOurCustomerFragment"
             app:destination="@id/beOurCustomerFragment" />
+        <action
+            android:id="@+id/action_beOurCustomerPersonalFragment_to_beOurPersonalCustomerStepTwoFragment"
+            app:destination="@id/beOurPersonalCustomerStepTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beOurPersonalCustomerStepTwoFragment"
+        android:name="com.example.garantibbva.ui.fragment.BeOurPersonalCustomerStepTwoFragment"
+        android:label="BeOurPersonalCustomerStepTwoFragment" >
+        <action
+            android:id="@+id/action_beOurPersonalCustomerStepTwoFragment_to_beOurCustomerFragment"
+            app:destination="@id/beOurCustomerFragment" />
+        <argument
+            android:name="customer"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
     </fragment>
 </navigation>
