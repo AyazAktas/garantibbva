@@ -24,7 +24,7 @@ class BeOurCustomerPersonalFragment : Fragment() {
     private lateinit var binding: FragmentBeOurCustomerPersonalBinding
     private val registerViewModel: PersonalCustomerRegisterViewModel by viewModels()
 
-    // Listeyi oluşturuyoruz
+
     private val selectedAccountTypes = mutableListOf<String>()
 
     override fun onCreateView(
@@ -79,7 +79,7 @@ class BeOurCustomerPersonalFragment : Fragment() {
                     customersBalance = 0.0,
                     accountLocation = "",
                     accountType = selectedAccountType,
-                    accountPurpose = ""
+                    accountPurpose = "Şahsi"
                 )
                 Snackbar.make(binding.root, "Kayıt başarılı", Snackbar.LENGTH_SHORT).show()
                 val action=BeOurCustomerPersonalFragmentDirections.actionBeOurCustomerPersonalFragmentToBeOurPersonalCustomerStepTwoFragment(customer=customer)
