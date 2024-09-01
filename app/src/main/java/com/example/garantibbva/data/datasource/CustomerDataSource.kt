@@ -53,12 +53,17 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         }
     }
 
-
-    fun customerRegister(costumerProfilePicture:Int,customerName:String,customerTc:String,customerPassword:String,customerNo:String,accountNo:String,accountLocation:String,accountType:String,accountPurpose:String){
-        val newCustomer=Customer("",costumerProfilePicture,customerName,customerTc,customerPassword,0.0,customerNo,accountNo,accountLocation, accountType, accountPurpose)
-        collectionReference.document().set(newCustomer)
+    private fun generateRandomCustomerNo(): String {
+        val part1 = Random.nextInt(1000, 9999)
+        val part2 = Random.nextLong(1000000, 9999999)
+        return "$part1-$part2"
     }
 
+
+    fun personalCustomerRegister(customerId:String, costumerProfilePicture: Int, customerName: String, customerTc: String, customerBirthDate:String, customerPhoneNumber:String, customerPassword: String, customersBalance: Double,accountLocation:String, accountType:String, accountPurpose: String){
+        val newCustomer=Customer("",costumerProfilePicture,customerName,customerTc, customerBirthDate, customerPhoneNumber, customerPassword, customersBalance, generateRandomCustomerNo(), generateRandomAccountNo(), accountLocation, accountType, accountPurpose)
+        collectionReference.document().set(newCustomer)
+    }
 
     fun customerInit(): List<Customer>  {
         return listOf()

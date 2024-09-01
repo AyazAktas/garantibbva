@@ -181,6 +181,7 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="#009688"
             android:text="Hemen Başla"
+            android:onClick="@{()->BeOurPersonalCustomerFragment.register()}"
             android:textSize="16sp"
             android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"

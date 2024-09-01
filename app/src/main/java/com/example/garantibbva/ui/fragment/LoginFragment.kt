@@ -37,7 +37,6 @@ class LoginFragment : Fragment() {
 
     fun onLoginClicked() {
         viewLifecycleOwner.lifecycleScope.launch {
-            // ViewModel üzerinden login işlemini yapın
             val customer = loginViewModel.login(enteredNumber, enteredPassword)
             if (customer != null) {
                 Toast.makeText(context, "Giriş başarılı", Toast.LENGTH_SHORT).show()

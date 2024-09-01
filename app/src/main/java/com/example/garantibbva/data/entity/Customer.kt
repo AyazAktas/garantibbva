@@ -1,5 +1,6 @@
 package com.example.garantibbva.data.entity
 
+import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
 import java.io.Serializable
 
 data class Customer(
@@ -7,6 +8,8 @@ data class Customer(
     var costumerProfilePicture: Int?=0,
     var customerName: String?="",
     var customerTc: String?="",
+    var customerBirthDate:String?="",
+    var customerPhoneNumber:String?="",
     var customerPassword: String?="",
     var customersBalance: Double?=0.0,
     var customerNo: String?="",
