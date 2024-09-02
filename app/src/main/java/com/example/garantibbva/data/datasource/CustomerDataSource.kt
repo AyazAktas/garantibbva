@@ -57,6 +57,16 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         return "$part2"
     }
 
+    private fun generateRandomIbanNumber(accountNo: String): String {
+        val accountNoWithoutDash = accountNo.replace("-", "")
+        val countryCode = "TR"
+        val checkDigits = Random.nextInt(10, 99).toString()
+        val bankCode = "00061"
+
+        return "$countryCode$checkDigits$bankCode$accountNoWithoutDash"
+    }
+
+
     suspend fun personalCustomerRegister(
         costumerProfilePicture: Int,
         customerName: String,
@@ -69,6 +79,9 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         accountType: String,
         accountPurpose: String
     ): Customer {
+        val accountNo = generateRandomAccountNo()
+        val ibanNumber = generateRandomIbanNumber(accountNo)
+
         val newCustomer = Customer(
             "", // Placeholder for customerId
             costumerProfilePicture,
@@ -79,10 +92,11 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
             customerPassword,
             customersBalance,
             generateRandomCustomerNo(),
-            generateRandomAccountNo(),
+            accountNo,
             accountLocation,
             accountType,
-            accountPurpose
+            accountPurpose,
+            ibanNumber
         )
 
         val documentRef = collectionReference.add(newCustomer).await()

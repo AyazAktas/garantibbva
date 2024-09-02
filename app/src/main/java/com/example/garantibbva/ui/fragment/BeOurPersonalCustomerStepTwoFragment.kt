@@ -1,5 +1,6 @@
 package com.example.garantibbva.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,12 +38,19 @@ class BeOurPersonalCustomerStepTwoFragment : Fragment() {
                 .show()
         }
 
+
         return binding.root
     }
 
 
     fun buttonSaveCustomer(customerId:String,customerName: String, customerTc: String, customerBirthDate: String, customerPhoneNumber: String, customerPassword: String, accountLocation: String){
         registerViewModel.customerRegisterOtherInfos(customerId, customerName, customerTc, customerBirthDate, customerPhoneNumber, customerPassword, accountLocation)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Tebrikler, kaydınız başarıyla tamamlandı. Belirlediğiniz şifre ile müşteri numaranız veya TC Kimlik numaranızı kullanarak giriş yapabilirsiniz. Parolanızı unutursanız giriş sayfasında 'Parolamı Unuttum' seçeneği ile yeni parola alabilirsiniz. Hoşgeldiniz.")
+            .setPositiveButton("Tamam") { dialog, id ->
+                findNavController().navigate(R.id.action_beOurPersonalCustomerStepTwoFragment_to_anasayfaFragment)
+            }
+        builder.create().show()
     }
 
 }

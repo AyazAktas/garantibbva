@@ -16,7 +16,8 @@ data class Customer(
     var accountNo: String?="",
     var accountLocation:String?="",
     var accountType:String?="",
-    var accountPurpose: String?=""
+    var accountPurpose: String?="",
+    var ibanNumber:String?=""
 ) : Serializable{
 
 }
