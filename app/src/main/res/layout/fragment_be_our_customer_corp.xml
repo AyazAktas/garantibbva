@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="BeOurCorpCustomerFragment"
+            type="com.example.garantibbva.ui.fragment.BeOurCustomerCorpFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.BeOurCustomerCorpFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#4CAF50"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <ImageView
+                android:id="@+id/toolbarImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:onClick="@{()->BeOurCorpCustomerFragment.returnBeOurCustomerPage(toolbarImage)}"
+                android:src="@drawable/sharp_close_24"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Kurumsal Müşterimiz Olun"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="179dp"
+                tools:layout_editor_absoluteY="18dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="357dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="8dp"
+            android:text="Dilediğiniz yerden kolayca firmanızı Garanti BBVA kurumsal müşterisi yapabilirsiniz."
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupAccountType"
+            android:layout_width="278dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:chipSpacing="8dp"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOperatingAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Günlük Hesap" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPayrollAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Maaş Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipInvestmentAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Yatırım Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSavingsAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Vadeli Hesap" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCreditAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Kredi Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCorporateCardAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Kurumsal Kart Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTaxAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Vergi Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMerchantAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Üye İş Yeri Hesabı" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEscrowAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Emanet Hesabı" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPrivacy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroupAccountType">
+
+            <CheckBox
+                android:id="@+id/checkBoxPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#0BC297"
+                android:text="Kişisel verilerimin neden ve niçin kullanıldığını, nerelerden tolandığını, kimlere paylaşıldığını ve haklarımla ilgili olarak Kişisel Verilerin Korunması Kanunu uyarınca gerçekleştirilen ilgili Bilgilendirmeyi okudum." />
+
+            <CheckBox
+                android:id="@+id/checkBoxInfoLetter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#0BC297"
+                android:text="Başkası adına haraket etmediğime dair Bilgilendirme'yi kabul ve beyan ederim." />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonStartRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#009688"
+            android:enabled="false"
+            android:onClick="@{()->BeOurCorpCustomerFragment.register()}"
+            android:text="Hemen Başla"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutPrivacy" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

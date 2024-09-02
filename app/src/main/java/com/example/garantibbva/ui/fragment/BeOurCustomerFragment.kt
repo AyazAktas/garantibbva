@@ -20,6 +20,7 @@ class BeOurCustomerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater, R.layout.fragment_be_our_customer, container, false)
         binding.beOurCustomerFragment=this
+
         return binding.root
     }
 
@@ -29,6 +30,10 @@ class BeOurCustomerFragment : Fragment() {
 
     fun beOurPersonalCustomer(it:View){
         Navigation.findNavController(it).navigate(R.id.action_beOurCustomerFragment_to_beOurCustomerPersonalFragment)
+    }
+
+    fun beOurCorpCustomer(it:View){
+        Navigation.findNavController(it).navigate(R.id.action_beOurCustomerFragment_to_beOurCustomerCorpFragment)
     }
 
 }

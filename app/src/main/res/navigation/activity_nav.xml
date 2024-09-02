@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_beOurCustomerFragment_to_beOurCustomerPersonalFragment"
             app:destination="@id/beOurCustomerPersonalFragment" />
+        <action
+            android:id="@+id/action_beOurCustomerFragment_to_beOurCustomerCorpFragment"
+            app:destination="@id/beOurCustomerCorpFragment" />
     </fragment>
     <fragment
         android:id="@+id/beOurCustomerPersonalFragment"
@@ -79,5 +82,25 @@
         <action
             android:id="@+id/action_beOurPersonalCustomerStepTwoFragment_to_anasayfaFragment"
             app:destination="@id/anasayfaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beOurCustomerCorpFragment"
+        android:name="com.example.garantibbva.ui.fragment.BeOurCustomerCorpFragment"
+        android:label="BeOurCustomerCorpFragment" >
+        <action
+            android:id="@+id/action_beOurCustomerCorpFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
+        <action
+            android:id="@+id/action_beOurCustomerCorpFragment_to_beOurCorpCustomerStepTwoFragment"
+            app:destination="@id/beOurCorpCustomerStepTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beOurCorpCustomerStepTwoFragment"
+        android:name="com.example.garantibbva.ui.fragment.BeOurCorpCustomerStepTwoFragment"
+        android:label="fragment_be_our_corp_customer_step_two"
+        tools:layout="@layout/fragment_be_our_corp_customer_step_two" >
+        <argument
+            android:name="corp"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
     </fragment>
 </navigation>
