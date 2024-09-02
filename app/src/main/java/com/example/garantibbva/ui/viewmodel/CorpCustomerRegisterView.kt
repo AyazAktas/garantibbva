@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CorpCustomerRegisterView @Inject constructor(var corpRepository: CorpRepository) : ViewModel() {
-    suspend fun corpCustomerRegister(corpName:String,taxIdNumber:String,registrationNumber: String,address:String,corpPhoneNumber:String,corpEmail:String,contactPersonName: String,contactPersonPhone: String,contactPersonEmail: String,industry: String,contactPersonTc:String,accountType: String,dateOfIncorporation:String,annualRevenue: Double,numberOfEmployees: Int,accountBalance: Double,accountPurpose: String):Corp{
-        return corpRepository.corpCustomerRegister(corpName, taxIdNumber, registrationNumber, address, corpPhoneNumber, corpEmail, contactPersonName, contactPersonPhone, contactPersonEmail, industry, contactPersonTc, accountType, dateOfIncorporation, annualRevenue, numberOfEmployees, accountBalance, accountPurpose)
+    suspend fun corpCustomerRegister(corpName:String,taxIdNumber:String,registrationNumber: String,address:String,corpPhoneNumber:String,corpEmail:String,contactPersonName: String,contactPersonPhone: String,contactPersonEmail: String,industry: String,contactPersonTc:String,accountType: String,dateOfIncorporation:String,annualRevenue: Double,numberOfEmployees: String,accountBalance: Double,accountPurpose: String,password:String):Corp{
+        return corpRepository.corpCustomerRegister(corpName, taxIdNumber, registrationNumber, address, corpPhoneNumber, corpEmail, contactPersonName, contactPersonPhone, contactPersonEmail, industry, contactPersonTc, accountType, dateOfIncorporation, annualRevenue, numberOfEmployees, accountBalance, accountPurpose,password)
     }
 }

@@ -90,9 +90,10 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
         accountType: String,
         dateOfIncorporation:String,
         annualRevenue: Double,
-        numberOfEmployees: Int,
+        numberOfEmployees: String,
         accountBalance: Double,
-        accountPurpose: String
+        accountPurpose: String,
+        password:String
     ):Corp{
         val corpAccountNo= generateUniqueCorpAccountNo()
         val contactPersonsCustomerNo=generateUniqueContactPersonsCustomerNo()
@@ -119,7 +120,8 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
             numberOfEmployees,
             accountBalance,
             accountPurpose,
-            iban
+            iban,
+            password
         )
         val documentRef=collectionReferenceCorp.add(newCorp).await()
         val corpId=documentRef.id
@@ -130,13 +132,43 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
     }
 
 
+    fun corpRegisterOtherInfos(corpId:String,corpName: String,taxIdNumber: String,registrationNumber: String,address: String,corpPhoneNumber: String,corpEmail: String,contactPersonName: String,contactPersonPhone: String,contactPersonEmail: String,industry: String,contactPersonTc: String,dateOfIncorporation: String,numberOfEmployees: String,password: String){
+        if (corpId.isEmpty()){
+            Log.e("CorpUpdate", "Corp ID cannot be empty")
+            return
+        }
 
+        val corpToUpdate=HashMap<String,Any>()
+        corpToUpdate["corpName"]=corpName
+        corpToUpdate["taxIdNumber"]=taxIdNumber
+        corpToUpdate["registrationNumber"]=registrationNumber
+        corpToUpdate["address"]=address
+        corpToUpdate["corpPhoneNumber"]=corpPhoneNumber
+        corpToUpdate["corpEmail"]=corpEmail
+        corpToUpdate["contactPersonName"]=contactPersonName
+        corpToUpdate["contactPersonPhone"]=contactPersonPhone
+        corpToUpdate["contactPersonEmail"]=contactPersonEmail
+        corpToUpdate["industry"]=industry
+        corpToUpdate["contactPersonTc"]=contactPersonTc
+        corpToUpdate["dateOfIncorporation"]=dateOfIncorporation
+        corpToUpdate["numberOfEmployees"]=numberOfEmployees
+        corpToUpdate["password"]=password
 
+        val collectionReference=FirebaseFirestore.getInstance().collection("Corps")
+        val documentRef = collectionReference.document(corpId)
+        documentRef.update(corpToUpdate)
+            .addOnSuccessListener {
+                Log.d("CorpUpdate", "Corp successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.e("CorpUpdate", "Error updating document", e)
+            }
 
+    }
 
-
-
-
+    fun cancelRegistration(corpId: String) {
+        collectionReferenceCorp.document(corpId).delete()
+    }
 
 
 

@@ -79,9 +79,10 @@ class BeOurCustomerCorpFragment : Fragment() {
                     accountType = selectedAccountType,
                     dateOfIncorporation = "",
                     annualRevenue = 0.0,
-                    numberOfEmployees = 0,
+                    numberOfEmployees = "",
                     accountBalance = 0.0,
-                    accountPurpose = "Kurumsal"
+                    accountPurpose = "Kurumsal",
+                    password = ""
                 )
                 Snackbar.make(binding.root, "Kayıt işlemi başarıyla başladı.", Snackbar.LENGTH_SHORT).show()
                 val action = BeOurCustomerCorpFragmentDirections.actionBeOurCustomerCorpFragmentToBeOurCorpCustomerStepTwoFragment(corp = corp)

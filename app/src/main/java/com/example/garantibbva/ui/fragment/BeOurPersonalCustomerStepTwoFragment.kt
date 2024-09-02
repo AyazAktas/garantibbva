@@ -155,4 +155,5 @@ class BeOurPersonalCustomerStepTwoFragment : Fragment() {
             builder.create().show()
         }
     }
+
 }

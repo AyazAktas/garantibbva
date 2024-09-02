@@ -102,5 +102,8 @@
         <argument
             android:name="corp"
             app:argType="com.example.garantibbva.data.entity.Corp" />
+        <action
+            android:id="@+id/action_beOurCorpCustomerStepTwoFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
     </fragment>
 </navigation>

@@ -20,8 +20,9 @@ data class Corp(
     var accountType: String?="", // Hesap türü (ana hesap, maaş hesabı vb.)
     var dateOfIncorporation: String? = "",   // Şirket kuruluş tarihi
     var annualRevenue: Double? = 0.0,        // Yıllık gelir (ciro)
-    var numberOfEmployees: Int? = 0,         // Çalışan sayısı
+    var numberOfEmployees: String?="",         // Çalışan sayısı
     var accountBalance: Double? = 0.0,
     var accountPurpose: String?="",
-    var iban: String? = ""                   // IBAN numarası
+    var iban: String? = "", // IBAN numarası
+    var password:String?=""
 ):Serializable{}
