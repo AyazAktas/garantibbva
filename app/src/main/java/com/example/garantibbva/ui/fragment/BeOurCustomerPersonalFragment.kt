@@ -81,7 +81,7 @@ class BeOurCustomerPersonalFragment : Fragment() {
                     accountType = selectedAccountType,
                     accountPurpose = "Şahsi"
                 )
-                Snackbar.make(binding.root, "Kayıt başarılı", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, "Kayıt işlemi başarıyla başladı.", Snackbar.LENGTH_SHORT).show()
                 val action=BeOurCustomerPersonalFragmentDirections.actionBeOurCustomerPersonalFragmentToBeOurPersonalCustomerStepTwoFragment(customer=customer)
                 findNavController().navigate(action)
 
