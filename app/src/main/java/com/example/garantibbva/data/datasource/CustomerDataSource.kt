@@ -2,7 +2,6 @@ package com.example.garantibbva.data.datasource
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.garantibbva.R
 import com.example.garantibbva.data.entity.Customer
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,7 +18,63 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         return "$part1-$part2"
     }
 
-    var customerList= MutableLiveData<List<Customer>>()
+    private suspend fun generateUniqueAccountNo(): String {
+        while (true) {
+            val accountNo = generateRandomAccountNo()
+            val exists = withContext(Dispatchers.IO) {
+                val querySnapshot = collectionReference
+                    .whereEqualTo("accountNo", accountNo)
+                    .get()
+                    .await()
+                !querySnapshot.isEmpty
+            }
+            if (!exists) return accountNo
+        }
+    }
+
+    private suspend fun generateUniqueCustomerNo(): String {
+        while (true) {
+            val customerNo = generateRandomCustomerNo()
+            val exists = withContext(Dispatchers.IO) {
+                val querySnapshot = collectionReference
+                    .whereEqualTo("customerNo", customerNo)
+                    .get()
+                    .await()
+                !querySnapshot.isEmpty
+            }
+            if (!exists) return customerNo
+        }
+    }
+
+    private fun generateRandomCustomerNo(): String {
+        val part2 = Random.nextLong(1000000, 9999999)
+        return "$part2"
+    }
+
+    private suspend fun generateUniqueIbanNumber(accountNo: String): String {
+        while (true) {
+            val ibanNumber = generateRandomIbanNumber(accountNo)
+            val exists = withContext(Dispatchers.IO) {
+                val querySnapshot = collectionReference
+                    .whereEqualTo("ibanNumber", ibanNumber)
+                    .get()
+                    .await()
+                !querySnapshot.isEmpty
+            }
+            if (!exists) return ibanNumber
+        }
+    }
+
+    private fun generateRandomIbanNumber(accountNo: String): String {
+        val accountNoWithoutDash = accountNo.replace("-", "")
+        val countryCode = "TR"
+        val checkDigits = Random.nextInt(10, 99).toString().padStart(2, '0')
+        val bankCode = "00061"
+
+        return "$countryCode$checkDigits$bankCode$accountNoWithoutDash"
+    }
+
+    var customerList = MutableLiveData<List<Customer>>()
 
     suspend fun login(enteredCustomerTcOrNo: String, enteredCustomerPassword: String): Customer? {
         return withContext(Dispatchers.IO) {
@@ -52,21 +107,6 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         }
     }
 
-    private fun generateRandomCustomerNo(): String {
-        val part2 = Random.nextLong(1000000, 9999999)
-        return "$part2"
-    }
-
-    private fun generateRandomIbanNumber(accountNo: String): String {
-        val accountNoWithoutDash = accountNo.replace("-", "")
-        val countryCode = "TR"
-        val checkDigits = Random.nextInt(10, 99).toString()
-        val bankCode = "00061"
-
-        return "$countryCode$checkDigits$bankCode$accountNoWithoutDash"
-    }
-
-
     suspend fun personalCustomerRegister(
         costumerProfilePicture: Int,
         customerName: String,
@@ -79,8 +119,9 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         accountType: String,
         accountPurpose: String
     ): Customer {
-        val accountNo = generateRandomAccountNo()
-        val ibanNumber = generateRandomIbanNumber(accountNo)
+        val accountNo = generateUniqueAccountNo()
+        val uniqueCustomerNo = generateUniqueCustomerNo()
+        val uniqueIbanNumber = generateUniqueIbanNumber(accountNo)
 
         val newCustomer = Customer(
             "", // Placeholder for customerId
@@ -91,12 +132,12 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
             customerPhoneNumber,
             customerPassword,
             customersBalance,
-            generateRandomCustomerNo(),
+            uniqueCustomerNo,
             accountNo,
             accountLocation,
             accountType,
             accountPurpose,
-            ibanNumber
+            uniqueIbanNumber
         )
 
         val documentRef = collectionReference.add(newCustomer).await()
@@ -122,7 +163,6 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         customerToUpdate["customerPassword"] = customerPassword
         customerToUpdate["accountLocation"] = accountLocation
 
-
         val collectionReference = FirebaseFirestore.getInstance().collection("Customers")
         val documentRef = collectionReference.document(customerId)
 
@@ -135,10 +175,9 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
             }
     }
 
-    fun cancelRegistration(customerId:String){
+    fun cancelRegistration(customerId: String) {
         collectionReference.document(customerId).delete()
     }
-
 
     fun customerInit(): List<Customer> {
         return listOf()
