@@ -1,6 +1,6 @@
 package com.example.garantibbva.data.entity
 
-import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
+
 import java.io.Serializable
 
 data class Customer(
@@ -21,3 +21,5 @@ data class Customer(
 ) : Serializable{
 
 }
+// python firebase imp
+// notification
