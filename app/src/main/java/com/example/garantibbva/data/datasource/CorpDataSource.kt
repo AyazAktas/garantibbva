@@ -132,7 +132,21 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
     }
 
 
-    fun corpRegisterOtherInfos(corpId:String,corpName: String,taxIdNumber: String,registrationNumber: String,address: String,corpPhoneNumber: String,corpEmail: String,contactPersonName: String,contactPersonPhone: String,contactPersonEmail: String,industry: String,contactPersonTc: String,dateOfIncorporation: String,numberOfEmployees: String,password: String){
+    fun corpRegisterOtherInfos(corpId: String,
+                               corpName: String,
+                               taxIdNumber: String,
+                               registrationNumber: String,
+                               address: String,
+                               corpPhoneNumber: String,
+                               corpEmail: String,
+                               industry: String,
+                               dateOfIncorporation: String,
+                               numberOfEmployees: String,
+                               contactPersonName: String,
+                               contactPersonPhone: String,
+                               contactPersonEmail: String,
+                               contactPersonTc: String,
+                               password: String){
         if (corpId.isEmpty()){
             Log.e("CorpUpdate", "Corp ID cannot be empty")
             return
@@ -171,6 +185,29 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
     }
 
 
+    suspend fun login(enteredTcNo:String,enteredContactsCustomerNo:String,enteredPassword:String):Corp?{
+        return withContext(Dispatchers.IO){
+            try {
+                val querySnapshot=collectionReferenceCorp
+                    .whereEqualTo("contactPersonTc",enteredTcNo)
+                    .whereEqualTo("contactPersonsCustomerNo",enteredContactsCustomerNo)
+                    .whereEqualTo("password",enteredPassword)
+                    .get()
+                    .await()
+                if (querySnapshot.isEmpty){
+                    Log.e("LoginError", "Hatalı Numara veya Parola")
+                    return@withContext null
+                }
+                else{
+                    return@withContext querySnapshot.documents[0].toObject(Corp::class.java)
+                }
+            }
+            catch (e:Exception){
+                Log.e("LoginERROE","Firebase sorgusunda hata: ${e.message}")
+                return@withContext null
+            }
+        }
+    }
 
 
 }

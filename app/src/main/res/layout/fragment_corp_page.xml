@@ -6,7 +6,7 @@
     <data>
         <variable
             name="corpPageFragment"
-            type="com.example.garantibbva.ui.fragment.corpPageFragment" />
+            type="com.example.garantibbva.ui.fragment.CorpPageFragment" />
         <variable
             name="corp"
             type="com.example.garantibbva.data.entity.Corp" />
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.corpPageFragment">
+        tools:context=".ui.fragment.CorpPageFragment">
 
         <ImageView
             android:id="@+id/imageViewPp"

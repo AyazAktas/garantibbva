@@ -162,13 +162,13 @@ class BeOurCorpCustomerStepTwoFragment : Fragment() {
         address: String,
         corpPhoneNumber: String,
         corpEmail: String,
+        industry: String,
+        dateOfIncorporation: String,
+        numberOfEmployees: String,
         contactPersonName: String,
         contactPersonPhone: String,
         contactPersonEmail: String,
-        industry: String,
         contactPersonTc: String,
-        dateOfIncorporation: String,
-        numberOfEmployees: String,
         password: String
     ) {
         if (validateForm()) {
@@ -180,17 +180,17 @@ class BeOurCorpCustomerStepTwoFragment : Fragment() {
                 address,
                 corpPhoneNumber,
                 corpEmail,
+                industry,
+                dateOfIncorporation,
+                numberOfEmployees,
                 contactPersonName,
                 contactPersonPhone,
                 contactPersonEmail,
-                industry,
                 contactPersonTc,
-                dateOfIncorporation,
-                numberOfEmployees,
                 password
             )
             val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("Tebrikler, kaydınız başarıyla tamamlandı. Belirlediğiniz şifre ile şirket numaranız veya vergi numaranızı kullanarak giriş yapabilirsiniz. Parolanızı unutursanız giriş sayfasında 'Parolamı Unuttum' seçeneği ile yeni parola alabilirsiniz. Hoşgeldiniz.")
+            builder.setMessage("Tebrikler, kaydınız başarıyla tamamlandı. Belirlediğiniz şifre ile şirket numaranız veya vergi numaranızı kullanarak giriş yapabilirsiniz. Parolanızı unutursanız giriş sayfasında 'Parolamı Unuttum' seçeneği ile yeni parola alabilirsiniz. Lütfen Hesap numaranızı ve Müşteri numaranızı not ediniz. Hoşgeldiniz.")
                 .setPositiveButton("Tamam") { dialog, _ ->
                     findNavController().navigate(R.id.action_beOurCorpCustomerStepTwoFragment_to_anasayfaFragment)
                 }

@@ -16,7 +16,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class corpPageFragment : Fragment() {
+class CorpPageFragment : Fragment() {
     private lateinit var binding:FragmentCorpPageBinding
     private var corpId: String? = null
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
@@ -25,7 +25,7 @@ class corpPageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_corp_page,container,false)
         binding.corpPageFragment=this
-        val bundle:corpPageFragmentArgs by navArgs()
+        val bundle:CorpPageFragmentArgs by navArgs()
         val transactionCorp=bundle.corp
         binding.corp=transactionCorp
 

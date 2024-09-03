@@ -112,9 +112,8 @@
     </fragment>
     <fragment
         android:id="@+id/corpPageFragment"
-        android:name="com.example.garantibbva.ui.fragment.corpPageFragment"
-        android:label="fragment_corp_page"
-        tools:layout="@layout/fragment_corp_page" >
+        android:name="com.example.garantibbva.ui.fragment.CorpPageFragment"
+        android:label="CorpPageFragment" >
         <argument
             android:name="corp"
             app:argType="com.example.garantibbva.data.entity.Corp" />
