@@ -30,8 +30,6 @@ class CustomerPageFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_customer_page, container, false)
         binding.customerPageFragment = this
 
-
-
         val bundle: CustomerPageFragmentArgs by navArgs()
         val transactionCustomer = bundle.customer
         binding.customer = transactionCustomer

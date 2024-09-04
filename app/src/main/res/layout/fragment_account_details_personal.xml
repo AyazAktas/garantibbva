@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="accountDetailsPersonalFragment"
+            type="com.example.garantibbva.ui.fragment.AccountDetailsPersonalFragment" />
+        <variable
+            name="customer"
+            type="com.example.garantibbva.data.entity.Customer" />
     </data>
 
     <ScrollView
@@ -33,7 +38,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                    <!-- ToolBar İçerisine Resim ve Metin Ekleniyor -->
                     <ImageView
                         android:id="@+id/toolbarImage"
                         android:layout_width="wrap_content"
@@ -76,7 +80,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
-                            android:text="TextView"
+                            android:text="@{customer.accountNo}"
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -102,7 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
-                            android:text="TextView"
+                            android:text='@{String.valueOf(customer.customersBalance)+" TL"}'
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -116,7 +120,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="4dp"
-                            android:text="TextView"
+                            android:text="@{String.valueOf(customer.customersBalance)}"
                             android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -169,7 +173,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
+                            android:text="@{customer.customerName}"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -211,7 +215,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
+                            android:text="@{customer.customerNo}"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -262,7 +266,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
-                            android:text="TextView"
+                            android:text="@{customer.accountNo}"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -275,7 +279,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="8dp"
-                            android:text="TextView"
+                            android:text="@{customer.accountLocation}"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -314,7 +318,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
                             android:textColor="#0BC297"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -357,7 +360,6 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -399,7 +401,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
+                            android:text="@{customer.accountPurpose}"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -455,7 +457,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
+                            android:text='@{String.valueOf(customer.customersBalance)+" TL"}'
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -497,7 +499,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="16dp"
-                            android:text="TextView"
+                            android:text="-/-/-"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"

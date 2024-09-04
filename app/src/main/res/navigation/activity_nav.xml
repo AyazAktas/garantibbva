@@ -128,5 +128,8 @@
         <argument
             android:name="customer"
             app:argType="com.example.garantibbva.data.entity.Customer" />
+        <action
+            android:id="@+id/action_accountDetailsPersonalFragment_to_customerPageFragment"
+            app:destination="@id/customerPageFragment" />
     </fragment>
 </navigation>
