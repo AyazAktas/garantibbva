@@ -45,6 +45,9 @@
         <argument
             android:name="customer"
             app:argType="com.example.garantibbva.data.entity.Customer" />
+        <action
+            android:id="@+id/action_customerPageFragment_to_accountDetailsPersonalFragment"
+            app:destination="@id/accountDetailsPersonalFragment" />
     </fragment>
     <fragment
         android:id="@+id/beOurCustomerFragment"
@@ -117,5 +120,13 @@
         <argument
             android:name="corp"
             app:argType="com.example.garantibbva.data.entity.Corp" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailsPersonalFragment"
+        android:name="com.example.garantibbva.ui.fragment.AccountDetailsPersonalFragment"
+        android:label="AccountDetailsPersonalFragment" >
+        <argument
+            android:name="customer"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
     </fragment>
 </navigation>

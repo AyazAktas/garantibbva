@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
 import com.example.garantibbva.data.entity.Customer
@@ -28,10 +30,15 @@ class CustomerPageFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_customer_page, container, false)
         binding.customerPageFragment = this
 
+
+
         val bundle: CustomerPageFragmentArgs by navArgs()
         val transactionCustomer = bundle.customer
         binding.customer = transactionCustomer
-
+        binding.textViewAccountDetailsAction.setOnClickListener {
+            val action=CustomerPageFragmentDirections.actionCustomerPageFragmentToAccountDetailsPersonalFragment(transactionCustomer)
+            findNavController().navigate(action)
+        }
         customerId = transactionCustomer?.customerId
 
         customerId?.let {
