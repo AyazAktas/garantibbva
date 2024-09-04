@@ -24,12 +24,8 @@ class AccountDetailsPersonalFragment : Fragment() {
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private lateinit var customerListener: ListenerRegistration
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_account_details_personal, container, false
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_details_personal, container, false)
         binding.accountDetailsPersonalFragment = this
         val bundle: AccountDetailsPersonalFragmentArgs by navArgs()
         val transactionCustomer = bundle.customer

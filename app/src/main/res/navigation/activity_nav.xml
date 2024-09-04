@@ -120,6 +120,9 @@
         <argument
             android:name="corp"
             app:argType="com.example.garantibbva.data.entity.Corp" />
+        <action
+            android:id="@+id/action_corpPageFragment_to_accountDetailsCorpFragment"
+            app:destination="@id/accountDetailsCorpFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailsPersonalFragment"
@@ -131,5 +134,16 @@
         <action
             android:id="@+id/action_accountDetailsPersonalFragment_to_customerPageFragment"
             app:destination="@id/customerPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailsCorpFragment"
+        android:name="com.example.garantibbva.ui.fragment.AccountDetailsCorpFragment"
+        android:label="AccountDetailsCorpFragment" >
+        <action
+            android:id="@+id/action_accountDetailsCorpFragment_to_corpPageFragment"
+            app:destination="@id/corpPageFragment" />
+        <argument
+            android:name="corp"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
     </fragment>
 </navigation>

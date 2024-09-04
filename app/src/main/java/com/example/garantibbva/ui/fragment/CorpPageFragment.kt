@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
 import com.example.garantibbva.data.entity.Corp
@@ -28,6 +29,12 @@ class CorpPageFragment : Fragment() {
         val bundle:CorpPageFragmentArgs by navArgs()
         val transactionCorp=bundle.corp
         binding.corp=transactionCorp
+
+        binding.textViewCorrpAccountDetail.setOnClickListener {
+            val action=CorpPageFragmentDirections.actionCorpPageFragmentToAccountDetailsCorpFragment(transactionCorp)
+            findNavController().navigate(action)
+        }
+
 
         corpId=transactionCorp?.corpId
         corpId?.let{
