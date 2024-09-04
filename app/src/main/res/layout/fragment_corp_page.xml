@@ -124,10 +124,10 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="56dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="165dp"
                     android:src="@drawable/baseline_account_balance_wallet_24"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewCorrpAccountDetail" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewSend"

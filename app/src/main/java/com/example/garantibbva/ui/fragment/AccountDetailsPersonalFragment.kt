@@ -64,9 +64,9 @@ class AccountDetailsPersonalFragment : Fragment() {
     }
     private fun formatAccountType(accountType: String): String {
         return accountType
-            .replace("[", "") // Köşeli açma parantezini kaldır
-            .replace("]", "") // Köşeli kapama parantezini kaldır
-            .trim() // Başındaki ve sonundaki boşlukları temizle
+            .replace("[", "")
+            .replace("]", "")
+            .trim()
     }
 
 
