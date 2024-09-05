@@ -28,7 +28,8 @@ class AccountClosingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_closing, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_account_closing, container, false)
         binding.accountClosingFragment = this
         val args: AccountClosingFragmentArgs by navArgs()
         val transactionCustomer = args.customer
@@ -37,35 +38,32 @@ class AccountClosingFragment : Fragment() {
         binding.customer = transactionCustomer
         binding.corp = transactionCorp
 
-        if (transactionCorp == null) {
-            transactionCustomer?.let {
-                binding.textViewAccountOwner.text = it.customerName
-                val iban = formatIban(it.ibanNumber.toString())
-                binding.textViewAccountNoClosing.text = "${it.accountNo} / ${it.accountLocation}"
-                binding.textViewAccountIban.text=iban
-                binding.editTextTextPassword3.addTextChangedListener {
-                    customerPasswordValidation(it.toString())
-                }
-                binding.button3.setOnClickListener {
-                    Log.e("işlem","başarılı")
-                }
+        transactionCustomer?.let {
+            binding.textViewAccountOwner.text = it.customerName
+            val iban = formatIban(it.ibanNumber.toString())
+            binding.textViewAccountNoClosing.text = "${it.accountNo} / ${it.accountLocation}"
+            binding.textViewAccountIban.text = iban
+            binding.editTextTextPassword3.addTextChangedListener {
+                customerPasswordValidation(it.toString())
+            }
+            binding.button3.setOnClickListener {
+                Log.e("işlem", "başarılı")
             }
         }
 
-        if (transactionCustomer==null){
-            transactionCorp?.let {
-                binding.textViewAccountOwner.text=it.contactPersonName
-                val iban = formatIban(it.iban.toString())
-                binding.textViewAccountNoClosing.text="${it.corpAccountNo} / ${it.address}"
-                binding.textViewAccountIban.text=iban
-                binding.editTextTextPassword3.addTextChangedListener {
-                    corpPasswordValidation(it.toString())
-                }
-                binding.button3.setOnClickListener {
-                    Log.e("işlem","başarılı")
-                }
+        transactionCorp?.let {
+            binding.textViewAccountOwner.text = it.contactPersonName
+            val iban = formatIban(it.iban.toString())
+            binding.textViewAccountNoClosing.text = "${it.corpAccountNo} / ${it.address}"
+            binding.textViewAccountIban.text = iban
+            binding.editTextTextPassword3.addTextChangedListener {
+                corpPasswordValidation(it.toString())
+            }
+            binding.button3.setOnClickListener {
+                Log.e("işlem", "başarılı")
             }
         }
+
 
         binding.checkboxAgreement.setOnCheckedChangeListener { _, isChecked ->
             isCheckboxChecked = isChecked
@@ -83,7 +81,8 @@ class AccountClosingFragment : Fragment() {
         val transactionCustomer = binding.customer
         if (transactionCustomer != null) {
             lifecycleScope.launch {
-                isPasswordValid = passwordViewModel.isCustomersPasswordCorrect(transactionCustomer, password)
+                isPasswordValid =
+                    passwordViewModel.isCustomersPasswordCorrect(transactionCustomer, password)
                 updateButtonState()
             }
         }
@@ -93,12 +92,12 @@ class AccountClosingFragment : Fragment() {
         val transactionCorp = binding.corp
         if (transactionCorp != null) {
             lifecycleScope.launch {
-                isPasswordValid = passwordViewModel.isCorpsPasswordCorrect(transactionCorp, password)
+                isPasswordValid =
+                    passwordViewModel.isCorpsPasswordCorrect(transactionCorp, password)
                 updateButtonState()
             }
         }
     }
-
 
 
     private fun updateButtonState() {
