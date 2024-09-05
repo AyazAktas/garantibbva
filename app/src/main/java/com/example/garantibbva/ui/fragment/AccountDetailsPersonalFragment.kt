@@ -57,6 +57,7 @@ class AccountDetailsPersonalFragment : Fragment() {
             startFirestoreListener(it)
         }
 
+
         binding.buttonAccountClosing.setOnClickListener {
             firestore.collection("Customers").document(customerId!!).get().addOnSuccessListener { document ->
                 val currentBalance = document.getDouble("customersBalance")
@@ -78,7 +79,12 @@ class AccountDetailsPersonalFragment : Fragment() {
                     val alertDialog = builder.create()
                     alertDialog.show()
                 } else {
-                    Log.e("kapama", "işlem başarılı")
+                    if (transactionCustomer != null) {
+                        val action = AccountDetailsPersonalFragmentDirections.actionAccountDetailsPersonalFragmentToAccountClosingFragment(null,transactionCustomer)
+                        findNavController().navigate(action)
+                    } else {
+                        Log.e("AccountClosing", "Customer data is null!")
+                    }
                 }
             }
         }
@@ -117,5 +123,6 @@ class AccountDetailsPersonalFragment : Fragment() {
             }
         }
     }
+
 
 }

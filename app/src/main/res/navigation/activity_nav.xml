@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_accountDetailsPersonalFragment_to_customerPageFragment"
             app:destination="@id/customerPageFragment" />
+        <action
+            android:id="@+id/action_accountDetailsPersonalFragment_to_accountClosingFragment"
+            app:destination="@id/accountClosingFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailsCorpFragment"
@@ -145,5 +148,27 @@
         <argument
             android:name="corp"
             app:argType="com.example.garantibbva.data.entity.Corp" />
+        <action
+            android:id="@+id/action_accountDetailsCorpFragment_to_accountClosingFragment"
+            app:destination="@id/accountClosingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountClosingFragment"
+        android:name="com.example.garantibbva.ui.fragment.AccountClosingFragment"
+        android:label="AccountClosingFragment" >
+        <argument
+            android:name="corp"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
+        <argument
+            android:name="customer"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
+        <action
+            android:id="@+id/action_accountClosingFragment_to_accountDetailsPersonalFragment"
+            app:destination="@id/accountDetailsPersonalFragment" />
+        <action
+            android:id="@+id/action_accountClosingFragment_to_accountDetailsCorpFragment"
+            app:destination="@id/accountDetailsCorpFragment" />
     </fragment>
 </navigation>

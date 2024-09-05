@@ -183,6 +183,20 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         return listOf()
     }
 
+
+    suspend fun isCustomersPasswordCorrect(customer: Customer?, enteredPassword: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val correctPassword = customer?.customerPassword
+                return@withContext enteredPassword == correctPassword
+            } catch (e: Exception) {
+                Log.e("PasswordCheckError", "Şifre kontrolünde hata: ${e.message}")
+                return@withContext false
+            }
+        }
+    }
+
+
     suspend fun onForgetPasswordClicked() {
         Log.e("ParolaUnuttum", "Parola sıfırlama isteği")
     }

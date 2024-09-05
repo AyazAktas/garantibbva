@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="accountClosingFragment"
+            type="com.example.garantibbva.ui.fragment.AccountClosingFragment" />
+        <variable
+            name="corp"
+            type="com.example.garantibbva.data.entity.Corp" />
+        <variable
+            name="customer"
+            type="com.example.garantibbva.data.entity.Customer" />
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -135,17 +144,30 @@
                     android:layout_marginTop="8dp"
                     android:text="Hesap"
                     android:textColor="#7c7c7c"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewAccountInfos"
+                    android:id="@+id/textViewAccountNoClosing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="TextView"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView65"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewAccountIban"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="TextView"
+                    android:textColor="#00BCD4"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -173,6 +195,7 @@
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="Parola"
+            android:maxLength="6"
             android:inputType="textPassword"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

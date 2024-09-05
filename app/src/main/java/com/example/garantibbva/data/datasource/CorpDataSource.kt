@@ -209,5 +209,18 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
         }
     }
 
+    suspend fun isCorpsPasswordCorrect(corp: Corp?, enteredPassword: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val correctPassword = corp?.password
+                return@withContext enteredPassword == correctPassword
+            } catch (e: Exception) {
+                Log.e("PasswordCheckError", "Şifre kontrolünde hata: ${e.message}")
+                return@withContext false
+            }
+        }
+    }
+
+
 
 }

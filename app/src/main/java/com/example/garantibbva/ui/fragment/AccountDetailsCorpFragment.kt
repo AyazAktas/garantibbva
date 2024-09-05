@@ -54,6 +54,17 @@ class AccountDetailsCorpFragment : Fragment() {
         binding.textViewCorpAccountType.text=formattedAccountType
 
         binding.buttonCorpAccountClosing.setOnClickListener {
+            if (transactionCorp != null) {
+                val action = AccountDetailsPersonalFragmentDirections.actionAccountDetailsPersonalFragmentToAccountClosingFragment(transactionCorp,null)
+                findNavController().navigate(action)
+            } else {
+                Log.e("AccountClosing", "Customer data is null!")
+            }
+        }
+
+
+
+        binding.buttonCorpAccountClosing.setOnClickListener {
             firestore.collection("Corps").document(corpId!!).get().addOnSuccessListener { document ->
                 val currentBalance = document.getDouble("accountBalance")
 
@@ -74,7 +85,12 @@ class AccountDetailsCorpFragment : Fragment() {
                     val alertDialog = builder.create()
                     alertDialog.show()
                 } else {
-                    Log.e("kapama", "işlem başarılı")
+                    if (transactionCorp != null) {
+                        val action = AccountDetailsCorpFragmentDirections.actionAccountDetailsCorpFragmentToAccountClosingFragment(transactionCorp,null)
+                        findNavController().navigate(action)
+                    } else {
+                        Log.e("AccountClosing", "Customer data is null!")
+                    }
                 }
             }
         }
