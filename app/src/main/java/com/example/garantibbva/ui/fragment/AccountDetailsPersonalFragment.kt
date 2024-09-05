@@ -1,11 +1,16 @@
 package com.example.garantibbva.ui.fragment
 
+import android.app.AlertDialog
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -51,6 +56,33 @@ class AccountDetailsPersonalFragment : Fragment() {
         customerId?.let {
             startFirestoreListener(it)
         }
+
+        binding.buttonAccountClosing.setOnClickListener {
+            firestore.collection("Customers").document(customerId!!).get().addOnSuccessListener { document ->
+                val currentBalance = document.getDouble("customersBalance")
+
+                if (currentBalance != null && currentBalance != 0.0) {
+                    val builder = AlertDialog.Builder(requireContext())
+                    val messageTextView = TextView(requireContext())
+                    messageTextView.text = "Bilgilendirme\nHesabınızda bakiye bulunduğu için işleminizi gerçekleştiremiyoruz. Lütfen hesabınızdaki tutarı başka bir hesaba aktararak, kapama işleminizi tekrar deneyin."
+                    messageTextView.setTextAppearance(android.R.style.TextAppearance_Medium)
+                    messageTextView.setPadding(32, 32, 32, 32)
+                    messageTextView.textSize = 16f
+                    val spannableString = SpannableString(messageTextView.text)
+                    spannableString.setSpan(StyleSpan(Typeface.BOLD), 0, 13, 0)
+                    messageTextView.text = spannableString
+                    builder.setView(messageTextView)
+                        .setPositiveButton("Tamam") { dialog, id ->
+                            dialog.dismiss()
+                        }
+                    val alertDialog = builder.create()
+                    alertDialog.show()
+                } else {
+                    Log.e("kapama", "işlem başarılı")
+                }
+            }
+        }
+
 
         return binding.root
     }

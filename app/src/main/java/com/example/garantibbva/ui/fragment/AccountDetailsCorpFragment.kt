@@ -1,11 +1,17 @@
 package com.example.garantibbva.ui.fragment
 
+import android.app.AlertDialog
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.compose.ui.graphics.Color
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -36,17 +42,45 @@ class AccountDetailsCorpFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        corpId=transactionCorp?.corpId
+        corpId?.let {
+            startFirestoreListener(it)
+        }
+
         val formattedIban=formatIban(transactionCorp.iban.toString())
         binding.textViewCorpIban.text=formattedIban
 
         val formattedAccountType=formatAccountType(transactionCorp.accountType.toString())
         binding.textViewCorpAccountType.text=formattedAccountType
 
+        binding.buttonCorpAccountClosing.setOnClickListener {
+            firestore.collection("Corps").document(corpId!!).get().addOnSuccessListener { document ->
+                val currentBalance = document.getDouble("accountBalance")
 
-        corpId=transactionCorp?.corpId
-        corpId?.let {
-            startFirestoreListener(it)
+                if (currentBalance != null && currentBalance != 0.0) {
+                    val builder = AlertDialog.Builder(requireContext())
+                    val messageTextView = TextView(requireContext())
+                    messageTextView.text = "Bilgilendirme\nHesabınızda bakiye bulunduğu için işleminizi gerçekleştiremiyoruz. Lütfen hesabınızdaki tutarı başka bir hesaba aktararak, kapama işleminizi tekrar deneyin."
+                    messageTextView.setTextAppearance(android.R.style.TextAppearance_Medium)
+                    messageTextView.setPadding(32, 32, 32, 32)
+                    messageTextView.textSize = 16f
+                    val spannableString = SpannableString(messageTextView.text)
+                    spannableString.setSpan(StyleSpan(Typeface.BOLD), 0, 13, 0)
+                    messageTextView.text = spannableString
+                    builder.setView(messageTextView)
+                        .setPositiveButton("Tamam") { dialog, id ->
+                            dialog.dismiss()
+                        }
+                    val alertDialog = builder.create()
+                    alertDialog.show()
+                } else {
+                    Log.e("kapama", "işlem başarılı")
+                }
+            }
         }
+
+
+
         return binding.root
     }
 
