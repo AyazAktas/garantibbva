@@ -40,7 +40,12 @@ class AccountClosingFragment : Fragment() {
         binding.customer = transactionCustomer
         binding.corp = transactionCorp
 
+
         transactionCustomer?.let {
+            binding.toolbarImage.setOnClickListener {
+                val action=AccountClosingFragmentDirections.actionAccountClosingFragmentToAccountDetailsPersonalFragment(transactionCustomer!!)
+                findNavController().navigate(action)
+            }
             binding.textViewAccountOwner.text = it.customerName
             val iban = formatIban(it.ibanNumber.toString())
             binding.textViewAccountNoClosing.text = "${it.accountNo} / ${it.accountLocation}"
@@ -62,6 +67,10 @@ class AccountClosingFragment : Fragment() {
         }
 
         transactionCorp?.let {
+            binding.toolbarImage.setOnClickListener {
+                val action=AccountClosingFragmentDirections.actionAccountClosingFragmentToAccountDetailsCorpFragment(transactionCorp!!)
+                findNavController().navigate(action)
+            }
             binding.textViewAccountOwner.text = it.contactPersonName
             val iban = formatIban(it.iban.toString())
             binding.textViewAccountNoClosing.text = "${it.corpAccountNo} / ${it.address}"
