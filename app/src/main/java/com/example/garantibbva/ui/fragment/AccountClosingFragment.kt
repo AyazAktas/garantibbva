@@ -1,5 +1,6 @@
 package com.example.garantibbva.ui.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentAccountClosingBinding
@@ -47,7 +49,15 @@ class AccountClosingFragment : Fragment() {
                 customerPasswordValidation(it.toString())
             }
             binding.button3.setOnClickListener {
-                Log.e("işlem", "başarılı")
+                passwordViewModel.customerAccountClosing(transactionCustomer.customerId.toString())
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Hesabınız Kapanmıştır.")
+                builder.setMessage("Sayın Müşterimiz,\n" +
+                        "Bizimle yollarınızı ayırma kararınızdan dolayı üzüntü duyuyoruz. Sizinle çalışmaktan her zaman büyük memnuniyet duyduk. Gelecekte hizmetlerimizden yeniden yararlanmak isterseniz, size yardımcı olmaktan mutluluk duyarız. Hoşçakalın.")
+                    .setPositiveButton("Tamam") { dialog, _ ->
+                        findNavController().navigate(R.id.action_accountClosingFragment_to_anasayfaFragment)
+                    }
+                builder.create().show()
             }
         }
 
@@ -60,7 +70,15 @@ class AccountClosingFragment : Fragment() {
                 corpPasswordValidation(it.toString())
             }
             binding.button3.setOnClickListener {
-                Log.e("işlem", "başarılı")
+                passwordViewModel.closeAccountCorp(transactionCorp.corpId.toString())
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Hesabınız Kapanmıştır.")
+                builder.setMessage("Sayın Müşterimiz,\n" +
+                        "Bizimle yollarınızı ayırma kararınızdan dolayı üzüntü duyuyoruz. Sizinle çalışmaktan her zaman büyük memnuniyet duyduk. Gelecekte hizmetlerimizden yeniden yararlanmak isterseniz, size yardımcı olmaktan mutluluk duyarız. Hoşçakalın.")
+                    .setPositiveButton("Tamam") { dialog, _ ->
+                        findNavController().navigate(R.id.action_accountClosingFragment_to_anasayfaFragment)
+                    }
+                builder.create().show()
             }
         }
 
@@ -69,7 +87,7 @@ class AccountClosingFragment : Fragment() {
             isCheckboxChecked = isChecked
             updateButtonState()
         }
-
+        updateButtonState()
         return binding.root
     }
 

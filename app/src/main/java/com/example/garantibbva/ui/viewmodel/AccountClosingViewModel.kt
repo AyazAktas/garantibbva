@@ -15,20 +15,26 @@ class AccountClosingViewModel @Inject constructor(
     private val corpRepository: CorpRepository,
     private val customerRepository: CustomerRepository
 ) : ViewModel() {
-
-   suspend fun isCorpsPasswordCorrect(corp: Corp?, enteredPassword: String): Boolean {
+    suspend fun isCorpsPasswordCorrect(corp: Corp?, enteredPassword: String): Boolean {
         return withContext(Dispatchers.IO) {
             corp?.let {
                 corpRepository.isCorpsPasswordCorrect(it, enteredPassword)
             } ?: false
         }
     }
-
     suspend fun isCustomersPasswordCorrect(customer: Customer?, enteredPassword: String): Boolean {
         return withContext(Dispatchers.IO) {
             customer?.let {
                 customerRepository.isCustomersPasswordCorrect(it, enteredPassword)
             } ?: false
         }
+    }
+
+    fun closeAccountCorp(corpId:String){
+        corpRepository.closeAccountCorp(corpId)
+    }
+
+    fun customerAccountClosing(customerId: String){
+        customerRepository.customerAccountClosing(customerId)
     }
 }

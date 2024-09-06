@@ -170,5 +170,8 @@
         <action
             android:id="@+id/action_accountClosingFragment_to_accountDetailsCorpFragment"
             app:destination="@id/accountDetailsCorpFragment" />
+        <action
+            android:id="@+id/action_accountClosingFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
     </fragment>
 </navigation>

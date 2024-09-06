@@ -179,6 +179,10 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         collectionReference.document(customerId).delete()
     }
 
+    fun customerAccountClosing(customerId: String) {
+        collectionReference.document(customerId).delete()
+    }
+
     fun customerInit(): List<Customer> {
         return listOf()
     }

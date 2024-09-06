@@ -184,6 +184,9 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
         collectionReferenceCorp.document(corpId).delete()
     }
 
+    fun closeAccountCorp(corpId:String){
+        collectionReferenceCorp.document(corpId).delete()
+    }
 
     suspend fun login(enteredTcNo:String,enteredContactsCustomerNo:String,enteredPassword:String):Corp?{
         return withContext(Dispatchers.IO){

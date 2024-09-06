@@ -24,4 +24,5 @@ class CorpRepository(var corpDataSource: CorpDataSource) {
     fun cancelRegistration(corpId: String)=corpDataSource.cancelRegistration(corpId)
     suspend fun login(enteredTcNo:String,enteredContactsCustomerNo:String,enteredPassword:String)=corpDataSource.login(enteredTcNo, enteredContactsCustomerNo, enteredPassword)
     suspend fun isCorpsPasswordCorrect(corp: Corp?, enteredPassword: String)=corpDataSource.isCorpsPasswordCorrect(corp, enteredPassword)
+    fun closeAccountCorp(corpId:String)=corpDataSource.closeAccountCorp(corpId)
 }
