@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentLoginBinding
@@ -29,6 +30,9 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.costumerLoginFragment = this
+        binding.buttonForgetPassword.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_forgotMyPasswordFragment)
+        }
         return binding.root
     }
 
@@ -44,4 +48,5 @@ class LoginFragment : Fragment() {
             }
         }
     }
+
 }

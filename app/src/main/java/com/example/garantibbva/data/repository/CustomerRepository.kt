@@ -12,5 +12,6 @@ class CustomerRepository(var customerDataSource:CustomerDataSource) {
     fun cancelRegistration(customerId:String)=customerDataSource.cancelRegistration(customerId)
     suspend fun isCustomersPasswordCorrect(customer: Customer?, enteredPassword: String)=customerDataSource.isCustomersPasswordCorrect(customer, enteredPassword)
     fun customerAccountClosing(customerId: String)=customerDataSource.customerAccountClosing(customerId)
-
+    suspend fun passwordValidation(enteredCustomerNo:String,enteredTC:String)=customerDataSource.passwordValidation(enteredCustomerNo, enteredTC)
+    suspend fun updatePassword(customerId:String,customerPassword:String)=customerDataSource.updatePassword(customerId, customerPassword)
 }

@@ -2,7 +2,6 @@ package com.example.garantibbva.ui.fragment
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,8 +29,7 @@ class AccountClosingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_account_closing, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_closing, container, false)
         binding.accountClosingFragment = this
         val args: AccountClosingFragmentArgs by navArgs()
         val transactionCustomer = args.customer

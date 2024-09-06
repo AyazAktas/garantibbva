@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_loginFragment_to_customerPageFragment"
             app:destination="@id/customerPageFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotMyPasswordFragment"
+            app:destination="@id/forgotMyPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/corpLoginFragment"
@@ -172,6 +175,14 @@
             app:destination="@id/accountDetailsCorpFragment" />
         <action
             android:id="@+id/action_accountClosingFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotMyPasswordFragment"
+        android:name="com.example.garantibbva.ui.fragment.ForgotMyPasswordFragment"
+        android:label="ForgotMyPasswordFragment" >
+        <action
+            android:id="@+id/action_forgotMyPasswordFragment_to_anasayfaFragment"
             app:destination="@id/anasayfaFragment" />
     </fragment>
 </navigation>

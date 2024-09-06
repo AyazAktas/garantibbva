@@ -1,6 +1,7 @@
 package com.example.garantibbva.data.datasource
 
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.MutableLiveData
 import com.example.garantibbva.data.entity.Customer
 import com.google.firebase.firestore.CollectionReference
@@ -107,6 +108,30 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         }
     }
 
+    suspend fun passwordValidation(enteredCustomerNo:String,enteredTC:String):Customer?{
+        return withContext(Dispatchers.IO) {
+            try {
+                val querySnapshot = collectionReference
+                    .whereEqualTo("customerTc", enteredTC)
+                    .whereEqualTo("customerNo", enteredCustomerNo)
+                    .get()
+                    .await()
+                if (querySnapshot.isEmpty) {
+                    Log.e("LoginError", "Hatalı Numara veya Parola")
+                    return@withContext null
+                } else {
+                    return@withContext querySnapshot.documents[0].toObject(Customer::class.java)
+                }
+            }
+            catch (e: Exception) {
+                Log.e("LoginError", "Firebase sorgusunda hata: ${e.message}")
+                return@withContext null
+            }
+        }
+    }
+
+
+
     suspend fun personalCustomerRegister(
         costumerProfilePicture: Int,
         customerName: String,
@@ -166,6 +191,24 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         val collectionReference = FirebaseFirestore.getInstance().collection("Customers")
         val documentRef = collectionReference.document(customerId)
 
+        documentRef.update(customerToUpdate)
+            .addOnSuccessListener {
+                Log.d("CustomerUpdate", "Customer successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.e("CustomerUpdate", "Error updating document", e)
+            }
+    }
+
+    suspend fun updatePassword(customerId:String,customerPassword:String){
+        if (customerId.isEmpty()) {
+            Log.e("CustomerUpdate", "Customer ID cannot be empty")
+            return
+        }
+        val customerToUpdate=HashMap<String,Any>()
+        customerToUpdate["customerPassword"]=customerPassword
+        val collectionReference = FirebaseFirestore.getInstance().collection("Customers")
+        val documentRef = collectionReference.document(customerId)
         documentRef.update(customerToUpdate)
             .addOnSuccessListener {
                 Log.d("CustomerUpdate", "Customer successfully updated!")
