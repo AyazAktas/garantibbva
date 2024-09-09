@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentCorpLoginBinding
@@ -30,6 +31,11 @@ class CorpLoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_corp_login,container,false)
         binding.corpLoginFragment=this
+
+        binding.buttonForgot.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_corpLoginFragment_to_forgotMyPasswordCorpFragment)
+        }
+
         return binding.root
     }
     fun onLoginClicked(){

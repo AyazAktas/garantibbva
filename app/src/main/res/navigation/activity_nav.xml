@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_corpLoginFragment_to_corpPageFragment"
             app:destination="@id/corpPageFragment" />
+        <action
+            android:id="@+id/action_corpLoginFragment_to_forgotMyPasswordCorpFragment"
+            app:destination="@id/forgotMyPasswordCorpFragment" />
     </fragment>
     <fragment
         android:id="@+id/customerPageFragment"
@@ -183,6 +186,14 @@
         android:label="ForgotMyPasswordFragment" >
         <action
             android:id="@+id/action_forgotMyPasswordFragment_to_anasayfaFragment"
+            app:destination="@id/anasayfaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotMyPasswordCorpFragment"
+        android:name="com.example.garantibbva.ui.fragment.ForgotMyPasswordCorpFragment"
+        android:label="ForgotMyPasswordCorpFragment" >
+        <action
+            android:id="@+id/action_forgotMyPasswordCorpFragment_to_anasayfaFragment"
             app:destination="@id/anasayfaFragment" />
     </fragment>
 </navigation>

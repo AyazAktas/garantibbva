@@ -25,4 +25,6 @@ class CorpRepository(var corpDataSource: CorpDataSource) {
     suspend fun login(enteredTcNo:String,enteredContactsCustomerNo:String,enteredPassword:String)=corpDataSource.login(enteredTcNo, enteredContactsCustomerNo, enteredPassword)
     suspend fun isCorpsPasswordCorrect(corp: Corp?, enteredPassword: String)=corpDataSource.isCorpsPasswordCorrect(corp, enteredPassword)
     fun closeAccountCorp(corpId:String)=corpDataSource.closeAccountCorp(corpId)
+    suspend fun updateCorpPassword(corpId:String,corpPassword:String)=corpDataSource.updateCorpPassword(corpId, corpPassword)
+    suspend fun passwordValidationCorp(enteredCorpCustomerNo:String,enteredCorpTC:String)=corpDataSource.passwordValidationCorp(enteredCorpCustomerNo, enteredCorpTC)
 }

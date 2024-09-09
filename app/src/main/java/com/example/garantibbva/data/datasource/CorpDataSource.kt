@@ -224,6 +224,46 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
         }
     }
 
+    suspend fun updateCorpPassword(corpId:String,corpPassword:String){
+        if (corpId.isEmpty()) {
+            Log.e("CorpUpdate", "Customer ID cannot be empty")
+            return
+        }
+        val corpToUpdate=HashMap<String,Any>()
+        corpToUpdate["password"]=corpPassword
+        val collectionReference = FirebaseFirestore.getInstance().collection("Corps")
+        val documentRef = collectionReference.document(corpId)
+        documentRef.update(corpToUpdate)
+            .addOnSuccessListener {
+                Log.d("CorpUpdate", "Customer successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.e("CorpUpdate", "Error updating document", e)
+            }
+    }
+
+
+    suspend fun passwordValidationCorp(enteredCorpCustomerNo:String,enteredCorpTC:String):Corp?{
+        return withContext(Dispatchers.IO) {
+            try {
+                val querySnapshot = collectionReferenceCorp
+                    .whereEqualTo("contactPersonTc", enteredCorpTC)
+                    .whereEqualTo("contactPersonsCustomerNo", enteredCorpCustomerNo)
+                    .get()
+                    .await()
+                if (querySnapshot.isEmpty) {
+                    Log.e("LoginError", "Hatalı Numara veya Parola")
+                    return@withContext null
+                } else {
+                    return@withContext querySnapshot.documents[0].toObject(Corp::class.java)
+                }
+            }
+            catch (e: Exception) {
+                Log.e("LoginError", "Firebase sorgusunda hata: ${e.message}")
+                return@withContext null
+            }
+        }
+    }
 
 
 }

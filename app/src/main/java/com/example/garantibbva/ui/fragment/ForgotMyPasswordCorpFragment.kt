@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,39 +18,36 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.navigation.compose.NavHost
 import androidx.navigation.fragment.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentForgotMyPasswordBinding
+import com.example.garantibbva.databinding.FragmentForgotMyPasswordCorpBinding
 import com.example.garantibbva.ui.viewmodel.ForgotMyPasswordViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-// Kod karmaşasının önüne geçmek için Parolamı Unuttum sayfasını ortak yapmaktan vazgeçip ayırmaya karar verdim.
-
 @AndroidEntryPoint
-class ForgotMyPasswordFragment : Fragment() {
-    private lateinit var binding: FragmentForgotMyPasswordBinding
-    private val passwordViewModel: ForgotMyPasswordViewModel by viewModels()
+class ForgotMyPasswordCorpFragment : Fragment() {
 
+    private lateinit var binding: FragmentForgotMyPasswordCorpBinding
+    private val passwordViewModel: ForgotMyPasswordViewModel by viewModels()
     private var generatedCode: String? = null
     private lateinit var editTextSMSCode: EditText
     private lateinit var buttonConfirmSMS: Button
     private lateinit var editTextNewPassword: EditText
     private lateinit var editTextConfirmPassword: EditText
     private lateinit var buttonSubmitNewPassword: Button
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgot_my_password, container, false)
-        binding.forgotMyPasswordFragment = this
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_forgot_my_password_corp,container,false)
+        binding.forgotMyPasswordFragment=this
 
         editTextSMSCode = binding.editTextSMSCode
         buttonConfirmSMS = binding.buttonVerifySMS
@@ -58,19 +56,19 @@ class ForgotMyPasswordFragment : Fragment() {
         buttonSubmitNewPassword = binding.buttonSubmitNewPassword
 
         binding.toolbarImageStep1.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordFragment_to_anasayfaFragment)
+            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordCorpFragment_to_anasayfaFragment)
         }
         binding.toolbarImageStep2.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordFragment_to_anasayfaFragment)
+            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordCorpFragment_to_anasayfaFragment)
         }
         binding.toolbarImageStep3.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordFragment_to_anasayfaFragment)
+            Navigation.findNavController(it).navigate(R.id.action_forgotMyPasswordCorpFragment_to_anasayfaFragment)
         }
-
 
         setupListeners()
         validateInputs()
         checkNotificationPermission()
+
         return binding.root
     }
 
@@ -120,9 +118,9 @@ class ForgotMyPasswordFragment : Fragment() {
         val customerNumber = binding.editTextCustomerNumber.text.toString()
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val customer = passwordViewModel.passwordValidation(customerNumber, tc)
-            if (customer != null) {
-                saveCustomerId(customer.customerId.toString())  // customer.id yerine doğru ID alanını kullan
+            val corp = passwordViewModel.passwordValidationCorp(customerNumber, tc)
+            if (corp != null) {
+                saveCorpId(corp.corpId.toString())
                 Toast.makeText(context, "Sms Doğrulama aşamasına geçiliyor", Toast.LENGTH_SHORT).show()
                 showStep2()
                 generatedCode = generateVerificationCode()
@@ -188,30 +186,30 @@ class ForgotMyPasswordFragment : Fragment() {
         }
     }
 
-    private fun saveCustomerId(customerId: String) {
+    private fun saveCorpId(corpId: String) {
         val sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
-            putString("CUSTOMER_ID", customerId)
+            putString("CORP_ID", corpId)
             apply()
         }
     }
 
-    private fun getCustomerId(): String? {
+    private fun getCorpId(): String? {
         val sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("CUSTOMER_ID", null)
+        return sharedPreferences.getString("CORP_ID", null)
     }
 
     private fun handlePasswordReset() {
-        val customerId = getCustomerId()
+        val corpId = getCorpId()
         val newPassword = editTextNewPassword.text.toString()
 
-        if (customerId != null && validateFormPassword()) {
+        if (corpId != null && validateFormPassword()) {
             viewLifecycleOwner.lifecycleScope.launch {
-                passwordViewModel.updatePassword(customerId, newPassword)
+                passwordViewModel.updateCorpPassword(corpId, newPassword)
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setMessage("Parolanız başarıyla değiştirildi. Artık yeni parolanız ile giriş yapabilirsiniz.")
                     .setPositiveButton("Tamam") { dialog, id ->
-                        findNavController().navigate(R.id.action_forgotMyPasswordFragment_to_anasayfaFragment)
+                        findNavController().navigate(R.id.action_forgotMyPasswordCorpFragment_to_anasayfaFragment)
                     }
                 builder.create().show()
             }
@@ -236,4 +234,5 @@ class ForgotMyPasswordFragment : Fragment() {
             }
         }
     }
+
 }
