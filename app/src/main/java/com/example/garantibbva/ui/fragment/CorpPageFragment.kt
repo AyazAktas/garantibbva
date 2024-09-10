@@ -35,6 +35,10 @@ class CorpPageFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.imageViewSend.setOnClickListener {
+            val action=CorpPageFragmentDirections.actionCorpPageFragmentToMoneyTransferFragment(transactionCorp,null)
+            findNavController().navigate(action)
+        }
 
         corpId=transactionCorp?.corpId
         corpId?.let{
