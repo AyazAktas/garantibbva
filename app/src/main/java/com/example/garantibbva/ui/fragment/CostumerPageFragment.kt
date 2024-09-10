@@ -39,8 +39,14 @@ class CustomerPageFragment : Fragment() {
         }
         customerId = transactionCustomer?.customerId
 
+
         customerId?.let {
             startFirestoreListener(it)
+        }
+
+        binding.imageViewTransfer.setOnClickListener {
+            val action=CustomerPageFragmentDirections.actionCustomerPageFragmentToMoneyTransferFragment(null,transactionCustomer)
+            findNavController().navigate(action)
         }
 
         return binding.root

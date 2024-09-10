@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_customerPageFragment_to_accountDetailsPersonalFragment"
             app:destination="@id/accountDetailsPersonalFragment" />
+        <action
+            android:id="@+id/action_customerPageFragment_to_moneyTransferFragment"
+            app:destination="@id/moneyTransferFragment" />
     </fragment>
     <fragment
         android:id="@+id/beOurCustomerFragment"
@@ -129,6 +132,9 @@
         <action
             android:id="@+id/action_corpPageFragment_to_accountDetailsCorpFragment"
             app:destination="@id/accountDetailsCorpFragment" />
+        <action
+            android:id="@+id/action_corpPageFragment_to_moneyTransferFragment"
+            app:destination="@id/moneyTransferFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailsPersonalFragment"
@@ -195,5 +201,44 @@
         <action
             android:id="@+id/action_forgotMyPasswordCorpFragment_to_anasayfaFragment"
             app:destination="@id/anasayfaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ibanTransferFragment"
+        android:name="com.example.garantibbva.ui.fragment.IbanTransferFragment"
+        android:label="fragment_iban_transfer"
+        tools:layout="@layout/fragment_iban_transfer" >
+        <action
+            android:id="@+id/action_ibanTransferFragment_to_moneyTransferFragment"
+            app:destination="@id/moneyTransferFragment" />
+        <argument
+            android:name="customer"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
+        <argument
+            android:name="corp"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
+    </fragment>
+    <fragment
+        android:id="@+id/moneyTransferFragment"
+        android:name="com.example.garantibbva.ui.fragment.MoneyTransferFragment"
+        android:label="MoneyTransferFragment" >
+        <action
+            android:id="@+id/action_moneyTransferFragment_to_ibanTransferFragment"
+            app:destination="@id/ibanTransferFragment" />
+        <action
+            android:id="@+id/action_moneyTransferFragment_to_customerPageFragment"
+            app:destination="@id/customerPageFragment" />
+        <action
+            android:id="@+id/action_moneyTransferFragment_to_corpPageFragment"
+            app:destination="@id/corpPageFragment" />
+        <argument
+            android:name="corp"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
+        <argument
+            android:name="customer"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
     </fragment>
 </navigation>
