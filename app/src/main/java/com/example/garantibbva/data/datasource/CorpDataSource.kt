@@ -70,7 +70,8 @@ class CorpDataSource(val collectionReferenceCorp: CollectionReference) {
         val countryCode = "TR"
         val checkDigits = Random.nextInt(10, 99).toString().padStart(2, '0')
         val bankCode = "00061"
-        return "$countryCode$checkDigits$bankCode$accountNoWithoutDash"
+        val accountDigit = Random.nextInt(100000, 1000000)
+        return "$countryCode$checkDigits$bankCode$accountDigit$accountNoWithoutDash"
     }
 
 

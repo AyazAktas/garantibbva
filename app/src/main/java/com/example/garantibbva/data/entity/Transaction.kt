@@ -10,5 +10,6 @@ data class Transaction(
     var date: String? = "",               // İşlem tarihi
     var description: String? = "",        // İşlem açıklaması
     var senderName: String? = "",         // Gönderenin adı
-    var receiverName: String? = ""        // Alıcının adı
+    var receiverName: String? = "",// Alıcının adı
+    val senderId: String?
 ) : Serializable

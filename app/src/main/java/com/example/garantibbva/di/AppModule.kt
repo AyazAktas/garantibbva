@@ -2,11 +2,14 @@ package com.example.garantibbva.di
 
 import com.example.garantibbva.data.datasource.CorpDataSource
 import com.example.garantibbva.data.datasource.CustomerDataSource
+import com.example.garantibbva.data.datasource.TransactionDataSource
 import com.example.garantibbva.data.entity.Customer
 import com.example.garantibbva.data.repository.CorpRepository
 import com.example.garantibbva.data.repository.CustomerRepository
+import com.example.garantibbva.data.repository.TransactionRepository
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
@@ -24,9 +27,15 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
+    }
+
+    @Provides
+    @Singleton
     @Named("CustomerCollection")
-    fun provideCustomerCollectionReference(): CollectionReference {
-        return Firebase.firestore.collection("Customers")
+    fun provideCustomerCollectionReference(firestore: FirebaseFirestore): CollectionReference {
+        return firestore.collection("Customers")
     }
 
     @Provides
@@ -44,8 +53,8 @@ class AppModule {
     @Provides
     @Singleton
     @Named("CorpCollection")
-    fun provideCorpCollectionReference(): CollectionReference {
-        return Firebase.firestore.collection("Corps")
+    fun provideCorpCollectionReference(firestore: FirebaseFirestore): CollectionReference {
+        return firestore.collection("Corps")
     }
 
     @Provides
@@ -58,5 +67,24 @@ class AppModule {
     @Singleton
     fun provideCorpRepository(corpDataSource: CorpDataSource): CorpRepository {
         return CorpRepository(corpDataSource)
+    }
+
+    @Provides
+    @Singleton
+    @Named("TransactionCollection")
+    fun provideTransactionCollectionReference(firestore: FirebaseFirestore): CollectionReference {
+        return firestore.collection("Transactions")
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransactionDataSource(firestore: FirebaseFirestore): TransactionDataSource {
+        return TransactionDataSource(firestore)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransactionRepository(transactionDataSource: TransactionDataSource): TransactionRepository {
+        return TransactionRepository(transactionDataSource)
     }
 }

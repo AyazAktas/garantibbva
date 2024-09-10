@@ -139,7 +139,7 @@ class BeOurPersonalCustomerStepTwoFragment : Fragment() {
     }
 
     private fun updateDateInView() {
-        val myFormat = "dd/MM/yyyy" // Tarih formatı
+        val myFormat = "dd/MM/yyyy"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         binding.editTextBirthDate.setText(sdf.format(calendar.time))
     }
