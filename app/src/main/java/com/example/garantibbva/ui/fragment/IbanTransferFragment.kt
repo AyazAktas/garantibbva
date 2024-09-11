@@ -143,6 +143,15 @@ class IbanTransferFragment : Fragment() {
                         senderId = senderId
                     )
                     ibanTransferViewModel.saveTransaction(transaction)
+                    transactionCorp?.let {
+                        val action=IbanTransferFragmentDirections.actionIbanTransferFragmentToIbanTransferConfirmFragment(transaction,null,transactionCorp)
+                        findNavController().navigate(action)
+                    }
+                    transactionCustomer?.let {
+                        val action=IbanTransferFragmentDirections.actionIbanTransferFragmentToIbanTransferConfirmFragment(transaction,transactionCustomer,null)
+                        findNavController().navigate(action)
+                    }
+
                 }
             }
         }

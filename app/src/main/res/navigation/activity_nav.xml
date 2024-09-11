@@ -218,6 +218,9 @@
             android:name="corp"
             app:nullable="true"
             app:argType="com.example.garantibbva.data.entity.Corp" />
+        <action
+            android:id="@+id/action_ibanTransferFragment_to_ibanTransferConfirmFragment"
+            app:destination="@id/ibanTransferConfirmFragment" />
     </fragment>
     <fragment
         android:id="@+id/moneyTransferFragment"
@@ -240,5 +243,28 @@
             android:name="customer"
             app:nullable="true"
             app:argType="com.example.garantibbva.data.entity.Customer" />
+    </fragment>
+    <fragment
+        android:id="@+id/ibanTransferConfirmFragment"
+        android:name="com.example.garantibbva.ui.fragment.IbanTransferConfirmFragment"
+        android:label="fragment_iban_transfer_confirm"
+        tools:layout="@layout/fragment_iban_transfer_confirm" >
+        <argument
+            android:name="transaction"
+            app:argType="com.example.garantibbva.data.entity.Transaction" />
+        <action
+            android:id="@+id/action_ibanTransferConfirmFragment_to_moneyTransferFragment"
+            app:destination="@id/moneyTransferFragment" />
+        <action
+            android:id="@+id/action_ibanTransferConfirmFragment_to_ibanTransferFragment2"
+            app:destination="@id/ibanTransferFragment" />
+        <argument
+            android:name="customer"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
+        <argument
+            android:name="corp"
+            app:nullable="true"
+            app:argType="com.example.garantibbva.data.entity.Corp" />
     </fragment>
 </navigation>
