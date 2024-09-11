@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#009688"
+            android:backgroundTint="#1399AB"
             android:enabled="false"
             android:onClick="@{()->BeOurCorpCustomerFragment.register()}"
             android:text="Hemen Başla"

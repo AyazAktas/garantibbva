@@ -1,0 +1,18 @@
+package com.example.garantibbva.ui.fragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.garantibbva.R
+import com.example.garantibbva.databinding.FragmentIbanTransferConfirmBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class IbanTransferConfirmFragment : Fragment() {
+    private lateinit var binding: FragmentIbanTransferConfirmBinding
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_iban_transfer_confirm, container, false)
+    }
+}
