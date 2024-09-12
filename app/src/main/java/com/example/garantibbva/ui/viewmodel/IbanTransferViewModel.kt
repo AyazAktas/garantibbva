@@ -1,10 +1,8 @@
 package com.example.garantibbva.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.garantibbva.data.entity.Transaction
 import com.example.garantibbva.data.repository.TransactionRepository
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,5 +13,11 @@ class IbanTransferViewModel @Inject constructor(var transactionRepository: Trans
     }
     suspend fun saveTransaction(transaction: Transaction){
         return transactionRepository.saveTransaction(transaction)
+    }
+    fun cancelTransfer(transactionId: String){
+        return transactionRepository.cancelTransfer(transactionId)
+    }
+    fun makeTransfer(iban: String, amount: Double?, senderId:String,totalAmount:Double){
+        return transactionRepository.makeTransfer(iban, amount, senderId,totalAmount)
     }
 }

@@ -62,17 +62,21 @@ class CustomerPageFragment : Fragment() {
 
         customerListener = documentRef.addSnapshotListener { snapshot, e ->
             if (e != null) {
-                // Hata durumunda log kaydı
                 Log.w("CustomerPageFragment", "Listen failed.", e)
                 return@addSnapshotListener
             }
 
             if (snapshot != null && snapshot.exists()) {
                 val updatedCustomer = snapshot.toObject(Customer::class.java)
-                binding.customer = updatedCustomer
+                updatedCustomer?.let {
+                    val formattedBalance = String.format("%.2f", it.customersBalance)
+                    it.customersBalance = formattedBalance.toDouble()
+                    binding.customer = it
+                }
             } else {
                 Log.d("CustomerPageFragment", "Current data: null")
             }
         }
     }
+
 }

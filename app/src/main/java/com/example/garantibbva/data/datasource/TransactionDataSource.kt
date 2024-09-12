@@ -32,9 +32,83 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
         return "Unknown"
     }
 
+
+    fun cancelTransfer(transactionId: String) {
+        firestore.collection("Transactions").document(transactionId).delete()
+    }
+
+
     suspend fun saveTransaction(transaction: Transaction) {
         val documentReference = firestore.collection("Transactions").add(transaction).await()
         transaction.transactionId = documentReference.id
         documentReference.set(transaction).await()
     }
+
+    fun makeTransfer(iban: String, amount: Double?, senderId: String, totalAmount: Double) {
+        // Alıcının bakiyesini güncelleyin
+        firestore.collection("Customers")
+            .whereEqualTo("ibanNumber", iban)
+            .get()
+            .addOnSuccessListener { customerQuery ->
+                if (customerQuery.documents.isNotEmpty()) {
+                    val customer = customerQuery.documents.first().toObject(Customer::class.java)
+                    if (customer != null) {
+                        customer.customersBalance = customer.customersBalance!! + amount!!
+                        // Bakiyeyi güncelleyin
+                        customerQuery.documents.first().reference
+                            .update("customersBalance", customer.customersBalance)
+                    }
+                } else {
+                    firestore.collection("Corps")
+                        .whereEqualTo("iban", iban)
+                        .get()
+                        .addOnSuccessListener { corpQuery ->
+                            if (corpQuery.documents.isNotEmpty()) {
+                                val corp = corpQuery.documents.first().toObject(Corp::class.java)
+                                if (corp != null) {
+                                    corp.accountBalance = corp.accountBalance!! + amount!!
+                                    // Bakiyeyi güncelleyin
+                                    corpQuery.documents.first().reference
+                                        .update("accountBalance", corp.accountBalance)
+                                }
+                            }
+                        }
+                }
+            }
+
+        // Gönderenin bakiyesini güncelleyin
+        firestore.collection("Customers")
+            .whereEqualTo("customerId", senderId)
+            .get()
+            .addOnSuccessListener { customerQuery ->
+                if (customerQuery.documents.isNotEmpty()) {
+                    val customer = customerQuery.documents.first().toObject(Customer::class.java)
+                    if (customer != null) {
+                        customer.customersBalance = customer.customersBalance?.minus(totalAmount)
+                        // Bakiyeyi güncelleyin
+                        customerQuery.documents.first().reference
+                            .update("customersBalance", customer.customersBalance)
+                    }
+                } else {
+                    firestore.collection("Corps")
+                        .whereEqualTo("corpId", senderId)
+                        .get()
+                        .addOnSuccessListener { corpQuery ->
+                            if (corpQuery.documents.isNotEmpty()) {
+                                val corp = corpQuery.documents.first().toObject(Corp::class.java)
+                                if (corp != null) {
+                                    corp.accountBalance = corp.accountBalance!! - totalAmount
+                                    // Bakiyeyi güncelleyin
+                                    corpQuery.documents.first().reference
+                                        .update("accountBalance", corp.accountBalance)
+                                }
+                            }
+                        }
+                }
+            }
+    }
+
+
+
+
 }

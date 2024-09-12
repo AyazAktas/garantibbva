@@ -52,22 +52,25 @@ class CorpPageFragment : Fragment() {
         corpListener.remove()
     }
 
-    private fun startFirestoreListener(corpId:String){
-        val documentRef=firestore.collection("Corps").document(corpId)
-        corpListener=documentRef.addSnapshotListener{snapshot,e->
-            if (e!=null){
-                Log.w("CorpPageFragment","Listen Failed!",e)
+    private fun startFirestoreListener(corpId: String) {
+        val documentRef = firestore.collection("Corps").document(corpId)
+
+        corpListener = documentRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w("CorpPageFragment", "Listen failed.", e)
                 return@addSnapshotListener
             }
-            if (snapshot!=null&&snapshot.exists()){
-                val updatedCorp=snapshot.toObject(Corp::class.java)
-                binding.corp=updatedCorp
-            }
-            else{
-                Log.d("CorpPageFragment","Current Data: NULL!!")
+
+            if (snapshot != null && snapshot.exists()) {
+                val updatedCorp = snapshot.toObject(Corp::class.java)
+                updatedCorp?.let {
+                    val formattedBalance = String.format("%.2f", it.accountBalance)
+                    it.accountBalance = formattedBalance.toDouble()
+                    binding.corp = it
+                }
+            } else {
+                Log.d("CorpPageFragment", "Current data: null")
             }
         }
     }
-
-
 }
