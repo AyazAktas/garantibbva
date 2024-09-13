@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_anasayfaFragment_to_beOurCustomerFragment"
             app:destination="@id/beOurCustomerFragment" />
+        <action
+            android:id="@+id/action_anasayfaFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -267,4 +270,8 @@
             app:nullable="true"
             app:argType="com.example.garantibbva.data.entity.Corp" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.garantibbva.ui.fragment.MapsFragment"
+        android:label="MapsFragment" />
 </navigation>

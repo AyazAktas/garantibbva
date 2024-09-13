@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentAnasayfaBinding
 import com.example.garantibbva.ui.viewmodel.HomePageViewModel
@@ -41,4 +42,10 @@ class AnasayfaFragment : Fragment() {
     fun corpLoginButton(it: View) {
         Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_corpLoginFragment)
     }
+
+    fun onShowMapClicked(it:View) {
+        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_mapsFragment)
+    }
+
+
 }
