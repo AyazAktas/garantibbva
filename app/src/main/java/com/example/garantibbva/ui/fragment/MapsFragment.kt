@@ -30,7 +30,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val apiKey = "your_api_key" // Buraya API anahtarını ekle
+    private val apiKey = "a"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
