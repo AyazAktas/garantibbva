@@ -51,14 +51,9 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun getUserLocation() {
-        // Yenişehir, Pendik merkez konumunu belirleyin
-        val testLocation = LatLng(40.9265, 29.3111) // Yenişehir, Pendik
-
-        // Test konumunu haritada gösterin
+        val testLocation = LatLng(40.9265, 29.3111)
         mMap.addMarker(MarkerOptions().position(testLocation).title("Yenişehir Merkez"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(testLocation, 14F))
-
-        // Test konumunu kullanarak ATMs gösterin
         showNearbyATMs(testLocation)
     }
 
@@ -70,7 +65,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
                     .build()
 
                 val response: PlacesSearchResponse = PlacesApi.nearbySearchQuery(context, com.google.maps.model.LatLng(userLocation.latitude, userLocation.longitude))
-                    .radius(5000) // 5 km yarıçapında arama
+                    .radius(5000)
                     .keyword("Garanti")
                     .await()
 
