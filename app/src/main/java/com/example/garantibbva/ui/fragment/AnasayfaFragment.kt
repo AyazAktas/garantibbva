@@ -1,5 +1,7 @@
 package com.example.garantibbva.ui.fragment
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,28 +26,26 @@ class AnasayfaFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_anasayfa, container, false)
         binding.anasayfaFragment = this
 
-
         viewModel.customerList.observe(viewLifecycleOwner, Observer { customers ->
         })
 
         return binding.root
     }
 
-    fun beOurCustomerText(it:View){
-        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_beOurCustomerFragment)
+    fun beOurCustomerText(it:View) {
+        findNavController(it).navigate(R.id.action_anasayfaFragment_to_beOurCustomerFragment)
     }
 
     fun costumerLoginButton(it: View) {
-        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_loginFragment)
+        findNavController(it).navigate(R.id.action_anasayfaFragment_to_loginFragment)
     }
 
     fun corpLoginButton(it: View) {
-        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_corpLoginFragment)
+        findNavController(it).navigate(R.id.action_anasayfaFragment_to_corpLoginFragment)
     }
 
     fun onShowMapClicked(it:View) {
-        Navigation.findNavController(it).navigate(R.id.action_anasayfaFragment_to_mapsFragment)
+        findNavController(it).navigate(R.id.action_anasayfaFragment_to_mapsFragment)
     }
-
 
 }

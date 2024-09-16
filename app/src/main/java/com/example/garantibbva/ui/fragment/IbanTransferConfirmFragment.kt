@@ -24,7 +24,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.garantibbva.MainActivity
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentIbanTransferConfirmBinding
 import com.example.garantibbva.ui.viewmodel.IbanTransferViewModel
