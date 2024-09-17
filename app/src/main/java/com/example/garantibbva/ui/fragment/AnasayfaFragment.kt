@@ -28,7 +28,7 @@ class AnasayfaFragment : Fragment() {
         val bottomSheet = binding.root.findViewById<View>(R.id.bottom_sheet)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
-        bottomSheetBehavior.peekHeight = 200
+        bottomSheetBehavior.peekHeight = 300
 
         return binding.root
     }
@@ -49,11 +49,4 @@ class AnasayfaFragment : Fragment() {
         findNavController(it).navigate(R.id.action_anasayfaFragment_to_mapsFragment)
     }
 
-    fun showBottomSheet(it: View) {
-        if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        } else {
-            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        }
-    }
 }
