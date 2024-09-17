@@ -1,38 +1,39 @@
 package com.example.garantibbva.ui.fragment
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.example.garantibbva.R
 import com.example.garantibbva.databinding.FragmentAnasayfaBinding
-import com.example.garantibbva.ui.viewmodel.HomePageViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
-    private lateinit var binding: FragmentAnasayfaBinding
-    private val viewModel: HomePageViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private lateinit var binding: FragmentAnasayfaBinding
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_anasayfa, container, false)
         binding.anasayfaFragment = this
 
-        viewModel.customerList.observe(viewLifecycleOwner, Observer { customers ->
-        })
+        val bottomSheet = binding.root.findViewById<View>(R.id.bottom_sheet)
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+
+        bottomSheetBehavior.peekHeight = 200
 
         return binding.root
     }
 
-    fun beOurCustomerText(it:View) {
+    fun beOurCustomerText(it: View) {
         findNavController(it).navigate(R.id.action_anasayfaFragment_to_beOurCustomerFragment)
     }
 
@@ -44,8 +45,15 @@ class AnasayfaFragment : Fragment() {
         findNavController(it).navigate(R.id.action_anasayfaFragment_to_corpLoginFragment)
     }
 
-    fun onShowMapClicked(it:View) {
+    fun onShowMapClicked(it: View) {
         findNavController(it).navigate(R.id.action_anasayfaFragment_to_mapsFragment)
     }
 
+    fun showBottomSheet(it: View) {
+        if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        } else {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
 }
