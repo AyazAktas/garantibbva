@@ -8,15 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.garantibbva.R
+import com.example.garantibbva.data.datasource.TransactionDataSource
 import com.example.garantibbva.data.entity.Customer
+import com.example.garantibbva.data.entity.Transaction
 import com.example.garantibbva.databinding.FragmentCustomerPageBinding
+import com.example.garantibbva.ui.viewmodel.CostumerPageViewModel
+import com.example.garantibbva.ui.viewmodel.IbanTransferViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CustomerPageFragment : Fragment() {
@@ -24,6 +31,8 @@ class CustomerPageFragment : Fragment() {
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private lateinit var customerListener: ListenerRegistration
     private var customerId: String? = null
+    private val customerPageViewModel: CostumerPageViewModel by viewModels()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -72,6 +81,7 @@ class CustomerPageFragment : Fragment() {
                     val formattedBalance = String.format("%.2f", it.customersBalance)
                     it.customersBalance = formattedBalance.toDouble()
                     binding.customer = it
+                    fetchLastTransaction(it.customerId!!, it.ibanNumber!!)
                 }
             } else {
                 Log.d("CustomerPageFragment", "Current data: null")
@@ -79,4 +89,17 @@ class CustomerPageFragment : Fragment() {
         }
     }
 
+    private fun fetchLastTransaction(customerId: String, customerIban: String) {
+        lifecycleScope.launch {
+            val transactions = customerPageViewModel.getCustomerTransactions(customerId, customerIban)
+            val lastTransaction = transactions.maxByOrNull { it.date.toString() }
+
+            lastTransaction?.let {
+                binding.textViewTransactionType.text = it.transactionType
+                binding.textViewAmount.text = "${it.amount} TL"
+                binding.textViewTransactionDetail.text = it.description
+                binding.textViewLastTransactionDate.text = it.date
+            }
+        }
+    }
 }

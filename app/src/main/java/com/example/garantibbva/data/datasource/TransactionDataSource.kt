@@ -4,6 +4,7 @@ import com.example.garantibbva.data.entity.Corp
 import com.example.garantibbva.data.entity.Customer
 import com.example.garantibbva.data.entity.Transaction
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 
 class TransactionDataSource(private val firestore: FirebaseFirestore) {
@@ -76,7 +77,6 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
                 }
             }
 
-        // Gönderenin bakiyesini güncelleyin
         firestore.collection("Customers")
             .whereEqualTo("customerId", senderId)
             .get()
@@ -85,7 +85,6 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
                     val customer = customerQuery.documents.first().toObject(Customer::class.java)
                     if (customer != null) {
                         customer.customersBalance = customer.customersBalance?.minus(totalAmount)
-                        // Bakiyeyi güncelleyin
                         customerQuery.documents.first().reference
                             .update("customersBalance", customer.customersBalance)
                     }
@@ -108,6 +107,37 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
             }
     }
 
+    suspend fun getCustomerTransactions(customerId: String, customerIban: String): List<Transaction> {
+        val transactions = mutableListOf<Transaction>()
+
+        // Gönderen olarak müşteri işlemlerini al
+        val senderTransactionsQuery = firestore.collection("Transactions")
+            .whereEqualTo("senderId", customerId)
+            .get()
+            .await()
+
+        if (!senderTransactionsQuery.isEmpty) {
+            for (doc in senderTransactionsQuery.documents) {
+                val transaction = doc.toObject(Transaction::class.java)
+                transaction?.let { transactions.add(it) }
+            }
+        }
+
+        // Alıcı olarak müşteri işlemlerini al
+        val receiverTransactionsQuery = firestore.collection("Transactions")
+            .whereEqualTo("receiverIban", customerIban)
+            .get()
+            .await()
+
+        if (!receiverTransactionsQuery.isEmpty) {
+            for (doc in receiverTransactionsQuery.documents) {
+                val transaction = doc.toObject(Transaction::class.java)
+                transaction?.let { transactions.add(it) }
+            }
+        }
+
+        return transactions
+    }
 
 
 

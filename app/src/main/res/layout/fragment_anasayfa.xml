@@ -143,21 +143,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_attach_money_24" />
 
                     <TextView
                         android:id="@+id/textViewFab1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="FAST İşlemleri"
-                        android:textSize="12sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="90dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -167,15 +168,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_local_atm_24" />
 
                     <TextView
                         android:id="@+id/textViewFab2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ATM'den Para Çek/Yatır"
                         android:textAlignment="center"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -191,15 +193,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_wallet_24" />
 
                     <TextView
                         android:id="@+id/textViewFab3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TR Karekod İle Öde"
-                        android:textSize="12sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -224,21 +227,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_stacked_bar_chart_24" />
 
                     <TextView
                         android:id="@+id/textViewFab4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Piyasa Bilgileri"
-                        android:textSize="12sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="90dp"
+                    android:layout_height="100dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -248,7 +252,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_qr_code_scanner_24" />
 
                     <TextView
                         android:id="@+id/textViewFab5"
@@ -256,7 +261,7 @@
                         android:layout_height="wrap_content"
                         android:text="TR Karekod ile Para Gönder"
                         android:textAlignment="center"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -272,15 +277,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        app:fabCustomSize="48dp"
+                        app:srcCompat="@drawable/baseline_calculate_24" />
 
                     <TextView
                         android:id="@+id/textViewFab6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hesaplamalar"
-                        android:textSize="12sp"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 

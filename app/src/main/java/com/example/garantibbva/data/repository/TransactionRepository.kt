@@ -9,4 +9,5 @@ class TransactionRepository(private val transactionDataSource: TransactionDataSo
     suspend fun saveTransaction(transaction: Transaction)=transactionDataSource.saveTransaction(transaction)
     fun cancelTransfer(transactionId: String)=transactionDataSource.cancelTransfer(transactionId)
     fun makeTransfer(iban: String, amount: Double?, senderId:String,totalAmount:Double)=transactionDataSource.makeTransfer(iban, amount, senderId, totalAmount)
+    suspend fun getCustomerTransactions(customerId: String, customerIban: String)=transactionDataSource.getCustomerTransactions(customerId, customerIban)
 }

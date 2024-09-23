@@ -133,6 +133,7 @@ class IbanTransferFragment : Fragment() {
                         .show()
                 } else {
                     val transaction = Transaction(
+                        transactionType="Para Transferi",
                         senderIban = senderIban ?: "",
                         receiverIban = receiverIban,
                         amount = amount,
