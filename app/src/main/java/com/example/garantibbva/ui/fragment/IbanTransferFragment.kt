@@ -83,6 +83,11 @@ class IbanTransferFragment : Fragment() {
             val description = binding.editTextDesc.text.toString()
             val date = binding.editTextDate.text.toString()
 
+            val calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"))
+            val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            timeFormat.timeZone = TimeZone.getTimeZone("Europe/Istanbul")
+            val transactionHour = timeFormat.format(calendar.time)
+
             lifecycleScope.launch {
                 if (!isValidIban(receiverIban)) {
                     AlertDialog.Builder(requireContext())
@@ -138,6 +143,7 @@ class IbanTransferFragment : Fragment() {
                         receiverIban = receiverIban,
                         amount = amount,
                         date = date,
+                        transactionHour=transactionHour,
                         description = description,
                         senderName = senderName,
                         receiverName = receiverName,

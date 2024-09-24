@@ -89,16 +89,22 @@ class CustomerPageFragment : Fragment() {
         }
     }
 
+    //tarihi en yakını göstermeyi ekle
+
     private fun fetchLastTransaction(customerId: String, customerIban: String) {
         lifecycleScope.launch {
             val transactions = customerPageViewModel.getCustomerTransactions(customerId, customerIban)
             val lastTransaction = transactions.maxByOrNull { it.date.toString() }
-
             lastTransaction?.let {
                 binding.textViewTransactionType.text = it.transactionType
-                binding.textViewAmount.text = "${it.amount} TL"
-                binding.textViewTransactionDetail.text = it.description
-                binding.textViewLastTransactionDate.text = it.date
+                if(customerIban==it.receiverIban){
+                    binding.textViewAmount.text = " + ${it.amount} TL"
+                }
+                if (customerIban==it.senderIban){
+                    binding.textViewAmount.text = " - ${it.amount} TL"
+                }
+                binding.textViewTransactionDetail.text = it.transactionId+" / "+it.receiverName+" "+it.description
+                binding.textViewLastTransactionDate.text = it.date + " | " + it.transactionHour
             }
         }
     }
