@@ -53,6 +53,9 @@ class CustomerPageFragment : Fragment() {
             startFirestoreListener(it)
         }
 
+        val formattedBalance = String.format("%.2f TL", transactionCustomer.customersBalance)
+        binding.textViewBalance.text = formattedBalance
+
         binding.imageViewTransfer.setOnClickListener {
             val action=CustomerPageFragmentDirections.actionCustomerPageFragmentToMoneyTransferFragment(null,transactionCustomer)
             findNavController().navigate(action)
@@ -78,10 +81,16 @@ class CustomerPageFragment : Fragment() {
             if (snapshot != null && snapshot.exists()) {
                 val updatedCustomer = snapshot.toObject(Customer::class.java)
                 updatedCustomer?.let {
-                    val formattedBalance = String.format("%.2f", it.customersBalance)
-                    it.customersBalance = formattedBalance.toDouble()
-                    binding.customer = it
-                    fetchLastTransaction(it.customerId!!, it.ibanNumber!!)
+                    val formattedBalanceString = it.customersBalance.toString().replace(",", ".")
+                    val formattedBalance = formattedBalanceString.toDoubleOrNull()
+
+                    if (formattedBalance != null) {
+                        it.customersBalance = formattedBalance
+                        binding.customer = it
+                        fetchLastTransaction(it.customerId!!, it.ibanNumber!!)
+                    } else {
+                        Log.e("CustomerPageFragment", "Invalid balance format: ${it.customersBalance}")
+                    }
                 }
             } else {
                 Log.d("CustomerPageFragment", "Current data: null")
@@ -89,7 +98,7 @@ class CustomerPageFragment : Fragment() {
         }
     }
 
-    //tarihi en yakını göstermeyi ekle
+
 
     private fun fetchLastTransaction(customerId: String, customerIban: String) {
         lifecycleScope.launch {

@@ -15,6 +15,7 @@ import com.example.garantibbva.databinding.FragmentCorpPageBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class CorpPageFragment : Fragment() {
@@ -34,6 +35,9 @@ class CorpPageFragment : Fragment() {
             val action=CorpPageFragmentDirections.actionCorpPageFragmentToAccountDetailsCorpFragment(transactionCorp)
             findNavController().navigate(action)
         }
+
+        val formattedBalance = String.format("%.2f TL", transactionCorp.accountBalance)
+        binding.textViewCorpBalance.text = formattedBalance
 
         binding.imageViewSend.setOnClickListener {
             val action=CorpPageFragmentDirections.actionCorpPageFragmentToMoneyTransferFragment(transactionCorp,null)
@@ -64,13 +68,17 @@ class CorpPageFragment : Fragment() {
             if (snapshot != null && snapshot.exists()) {
                 val updatedCorp = snapshot.toObject(Corp::class.java)
                 updatedCorp?.let {
-                    val formattedBalance = String.format("%.2f", it.accountBalance)
-                    it.accountBalance = formattedBalance.toDouble()
-                    binding.corp = it
+                    val formattedBalanceString = it.accountBalance.toString().replace(",", ".")
+                    val formattedBalance = formattedBalanceString.toDoubleOrNull()
+                    if (formattedBalance!=null){
+                        it.accountBalance = formattedBalance
+                        binding.corp = it
+                    }
                 }
             } else {
                 Log.d("CorpPageFragment", "Current data: null")
             }
         }
     }
+
 }
