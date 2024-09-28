@@ -64,7 +64,6 @@ class CorpPageFragment : Fragment() {
                 Log.w("CorpPageFragment", "Listen failed.", e)
                 return@addSnapshotListener
             }
-
             if (snapshot != null && snapshot.exists()) {
                 val updatedCorp = snapshot.toObject(Corp::class.java)
                 updatedCorp?.let {
