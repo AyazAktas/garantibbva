@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_customerPageFragment_to_moneyTransferFragment"
             app:destination="@id/moneyTransferFragment" />
+        <action
+            android:id="@+id/action_customerPageFragment_to_allTransactionsFragment"
+            app:destination="@id/allTransactionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/beOurCustomerFragment"
@@ -274,4 +277,13 @@
         android:id="@+id/mapsFragment"
         android:name="com.example.garantibbva.ui.fragment.MapsFragment"
         android:label="MapsFragment" />
+    <fragment
+        android:id="@+id/allTransactionsFragment"
+        android:name="com.example.garantibbva.ui.fragment.AllTransactionsFragment"
+        android:label="fragment_all_transactions"
+        tools:layout="@layout/fragment_all_transactions" >
+        <argument
+            android:name="customer"
+            app:argType="com.example.garantibbva.data.entity.Customer" />
+    </fragment>
 </navigation>

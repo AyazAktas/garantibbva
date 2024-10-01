@@ -1,8 +1,6 @@
 package com.example.garantibbva.data.datasource
 
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.MutableLiveData
 import com.example.garantibbva.data.entity.Customer
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,7 +9,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
-class CustomerDataSource(val collectionReference: CollectionReference) {
+class CustomerDataSource(private val collectionReference: CollectionReference) {
 
     private fun generateRandomAccountNo(): String {
         val part1 = Random.nextInt(1000, 9999)
@@ -74,8 +72,6 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         val accountDigit = Random.nextInt(100000, 1000000)
         return "$countryCode$checkDigits$bankCode$accountDigit$accountNoWithoutDash"
     }
-
-    var customerList = MutableLiveData<List<Customer>>()
 
     suspend fun login(enteredCustomerTcOrNo: String, enteredCustomerPassword: String): Customer? {
         return withContext(Dispatchers.IO) {
@@ -149,7 +145,7 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
         val uniqueIbanNumber = generateUniqueIbanNumber(accountNo)
 
         val newCustomer = Customer(
-            "", // Placeholder for customerId
+            "",
             costumerProfilePicture,
             customerName,
             customerTc,
@@ -200,7 +196,7 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
             }
     }
 
-    suspend fun updatePassword(customerId:String,customerPassword:String){
+    fun updatePassword(customerId:String,customerPassword:String){
         if (customerId.isEmpty()) {
             Log.e("CustomerUpdate", "Customer ID cannot be empty")
             return
@@ -244,7 +240,7 @@ class CustomerDataSource(val collectionReference: CollectionReference) {
     }
 
 
-    suspend fun onForgetPasswordClicked() {
+    fun onForgetPasswordClicked() {
         Log.e("ParolaUnuttum", "Parola sıfırlama isteği")
     }
 }

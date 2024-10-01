@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.garantibbva.R
+import com.example.garantibbva.databinding.FragmentAllTransactionsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AllTransactionsFragment : Fragment() {
-
+    private lateinit var binding: FragmentAllTransactionsBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_all_transactions, container, false)
+        binding=FragmentAllTransactionsBinding.inflate(inflater,container,false)
+        return binding.root
     }
 }

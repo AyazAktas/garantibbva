@@ -53,6 +53,11 @@ class CustomerPageFragment : Fragment() {
             startFirestoreListener(it)
         }
 
+        binding.textViewAccountTransactions.setOnClickListener {
+            val action=CustomerPageFragmentDirections.actionCustomerPageFragmentToAllTransactionsFragment(transactionCustomer)
+            findNavController().navigate(action)
+        }
+
         val formattedBalance = String.format("%.2f TL", transactionCustomer.customersBalance)
         binding.textViewBalance.text = formattedBalance
 
