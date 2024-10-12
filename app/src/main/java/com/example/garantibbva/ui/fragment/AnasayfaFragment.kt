@@ -1,5 +1,7 @@
 package com.example.garantibbva.ui.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,13 @@ class AnasayfaFragment : Fragment() {
         val bottomSheet = binding.root.findViewById<View>(R.id.bottom_sheet)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
+        binding.textViewContactUs.setOnClickListener {
+            val phoneNumber = "4440333"
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:$phoneNumber")
+            }
+            startActivity(intent)
+        }
         bottomSheetBehavior.peekHeight = 300
 
         return binding.root

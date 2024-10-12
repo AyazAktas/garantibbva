@@ -13,6 +13,14 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.AnasayfaFragment">
 
+        <!-- Arka Plan Resmi -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/arkaplankara"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -52,6 +60,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:text="Müşterimiz Olun"
+                android:textColor="#FFFFFF"
                 android:onClick="@{()->anasayfaFragment.beOurCustomerText(textViewBeOurCustomer)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCostumerLogin" />
@@ -62,17 +71,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:textColor="#FFFFFF"
                 android:text="En Yakın ATM / Şube"
                 android:onClick="@{()->anasayfaFragment.onShowMapClicked(textView3)}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewBeOurCustomer" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textViewContactUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="67dp"
+                android:textColor="#FFFFFF"
                 android:text="Bize Ulaşın"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCostumerLogin" />
@@ -95,6 +106,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="224dp"
                 android:text="Garanti BBVA'ya"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +120,7 @@
                 android:layout_marginTop="4dp"
                 android:text="Hoş Geldiniz"
                 android:textSize="24sp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -120,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+            android:background="@drawable/shape"
             android:padding="16dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -144,6 +157,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         app:fabCustomSize="48dp"
+                        android:backgroundTint="#EDECEC"
+                        app:tint="#1399AB"
                         app:srcCompat="@drawable/baseline_attach_money_24" />
 
                     <TextView
@@ -168,6 +183,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:backgroundTint="#EDECEC"
+                        app:tint="#1399AB"
                         app:fabCustomSize="48dp"
                         app:srcCompat="@drawable/baseline_local_atm_24" />
 
@@ -194,6 +211,8 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         app:fabCustomSize="48dp"
+                        android:backgroundTint="#EDECEC"
+                        app:tint="#1399AB"
                         app:srcCompat="@drawable/baseline_wallet_24" />
 
                     <TextView
@@ -227,6 +246,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:backgroundTint="#EDECEC"
+                        app:tint="#1399AB"
                         app:fabCustomSize="48dp"
                         app:srcCompat="@drawable/baseline_stacked_bar_chart_24" />
 
@@ -252,7 +273,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:backgroundTint="#EDECEC"
                         app:fabCustomSize="48dp"
+                        app:tint="#1399AB"
                         app:srcCompat="@drawable/baseline_qr_code_scanner_24" />
 
                     <TextView
@@ -277,7 +300,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:backgroundTint="#EDECEC"
                         app:fabCustomSize="48dp"
+                        app:tint="#1399AB"
                         app:srcCompat="@drawable/baseline_calculate_24" />
 
                     <TextView
@@ -291,8 +316,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <!-- QR Görüntüle yazısı -->
 
         </LinearLayout>
 

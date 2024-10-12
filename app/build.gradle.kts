@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
@@ -52,12 +51,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation ("com.google.android.gms:play-services-maps:18.0.0")
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
-    implementation ("com.google.maps:google-maps-services:0.19.0")
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.maps:google-maps-services:0.19.0")
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
-    implementation("com.google.dagger:hilt-android:2.47")
     implementation("com.google.dagger:hilt-android:2.47")
     ksp("com.google.dagger:hilt-compiler:2.47")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
@@ -68,7 +66,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-kapt {
-    correctErrorTypes = true
 }
