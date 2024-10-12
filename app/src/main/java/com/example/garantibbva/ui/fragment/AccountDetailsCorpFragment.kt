@@ -27,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AccountDetailsCorpFragment : Fragment() {
     private lateinit var binding:FragmentAccountDetailsCorpBinding
     private var corpId: String? = null
+    private var corpIban:String?=null
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
     private lateinit var corpListener: ListenerRegistration
 
@@ -43,6 +44,7 @@ class AccountDetailsCorpFragment : Fragment() {
         }
 
         corpId=transactionCorp?.corpId
+        corpIban=transactionCorp?.iban
         corpId?.let {
             startFirestoreListener(it)
         }
@@ -112,6 +114,7 @@ class AccountDetailsCorpFragment : Fragment() {
     }
 
 
+    //corp için fetch transaction kodlaması yapılacak!
 
     private fun startFirestoreListener(corpId: String) {
         val documentRef = firestore.collection("Corps").document(corpId)

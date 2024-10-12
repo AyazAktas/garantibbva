@@ -140,5 +140,7 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
     }
 
 
+    suspend fun getCorpTransactions(corpId:String,corpIban:String):List
+
 
 }
